@@ -29,4 +29,5 @@
 ## N. Documentation & close
 
 - [ ] `update-docs` per documentation-standards §5 (catalogs, manifest, mapping spec, env table, BUILD_DECISIONS)
+- [ ] Released project? Add `CHANGELOG.md` entry (Fix / Improvement / Maintenance)
 - [ ] Commit + PR (imperative English message, ticket prefix, no secrets)

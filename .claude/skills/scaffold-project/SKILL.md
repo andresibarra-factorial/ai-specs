@@ -21,7 +21,8 @@ Bootstrap a new project governed by this harness. **Ask before generating** — 
 <project>/
 ├── docs/CLAUDE.md            # from templates/build-brief.md, pre-filled with intake answers
 ├── docs/BUILD_PROMPT.md      # from templates/build-prompt.md (integration track)
-├── BUILD_DECISIONS.md        # empty, with header
+├── BUILD_DECISIONS.md        # empty, with header (live-run discoveries log)
+├── CHANGELOG.md              # header only — stays empty until first release (documentation-standards §6)
 ├── CLAUDE.md → points to docs/CLAUDE.md + the harness standards; GEMINI.md equivalent
 ├── modules/README.md         # empty catalog table
 ├── processes/README.md

@@ -44,9 +44,31 @@ Review what the change touched and update accordingly:
 | Env vars | Environment-variable table |
 | Platform discovery from a live run | `BUILD_DECISIONS.md` |
 | Decisions made | Build brief §locked decisions (move from §open) |
+| Any change to a **released** project | `CHANGELOG.md` entry (see §6) |
 
 The `update-docs` skill automates this review. Docs update is a mandatory task in every `tasks.md` (see `spec-workflow.md`).
 
-## 6. Self-improvement rule
+## 6. Project logs — BUILD_DECISIONS.md and CHANGELOG.md
+
+Every project keeps two root-level logs, both created (empty, with header) at scaffold time:
+
+**`BUILD_DECISIONS.md`** — verified platform/API discoveries from live runs (the Wellhub pattern). Entry format: date, discovery, evidence (what run/response proved it), and the code/design consequence. When a discovery generalizes beyond the project, propose promoting it to the harness standards (base-standards §6) — but the project log keeps the original record.
+
+**`CHANGELOG.md`** — the release history. Rules:
+
+- The file stays **empty (header only) until the first version is pushed/released**. Pre-release iteration is not changelog material — that history lives in the change folders and git.
+- The moment a version is released (deployed to production alias on YepCode, or promoted to prod on Factorial Code), every subsequent change lands as an entry classified as **Fix**, **Improvement**, or **Maintenance**.
+- Entry format:
+
+```
+## [<version or release tag>] — YYYY-MM-DD
+### Fix | Improvement | Maintenance
+- <one line per change, linking the change-id, e.g. (specs/changes/add-eligibility-gate)>
+```
+
+- The changelog is written for a reader who wasn't in the room: state the observable effect, not the internal refactor detail.
+- Updating it is part of the close step of every change on a released project (`spec-workflow.md` §2.7) — a change on a released project is not closed without its changelog entry.
+
+## 7. Self-improvement rule
 
 Learn from user feedback and propose documentation/standards improvements proactively — but never modify standards or templates without explicit user approval, never scope-creep beyond what was asked, and always confirm after applying.
