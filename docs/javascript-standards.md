@@ -28,7 +28,7 @@ main();
 
 ## 2. Dependencies
 
-- Prefer built-ins (`fetch` is native on Node 20+). Declare third-party deps pinned via `// @add-package pkg@x.y.z` or the team `package.json` manifest.
+- Prefer built-ins (`fetch` is native on Node 20+). Declare third-party deps pinned via `// @add-package pkg=x.y.z` (e.g. `// @add-package openai=4.79.1`) or the team `package.json` manifest.
 - Factorial API on Factorial Code: `FactorialClient` from `base-app`, backed by `@factorialco/api-client`. Never hand-roll Factorial calls.
 
 ## 3. Style

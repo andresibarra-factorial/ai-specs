@@ -6,11 +6,11 @@ Both platforms run the same engine (Factorial acquired YepCode; Factorial Code i
 
 | Area | YepCode | Factorial Code |
 |---|---|---|
-| Docs | https://yepcode.io/docs/ | https://code.factorialhr.com/docs (preprod: code.eu2.preproduction.factorialhr.com/docs) |
+| Docs | https://yepcode.io/docs/ | https://code.factorialhr.com/docs |
 | Global SDK object | `yepcode.*` (injected) | `fcode.*` (`from fcode import fcode, logger`) |
 | Python / Node | 3.12 / 20 | **3.13 / 22** |
 | CLI | `@yepcode/cli` | `@factorialco/fcode-cli` (`fcode clone/run/push/http/test`) |
-| Unit of delivery | Team of processes | **App**: `dev-{id}` → review/CI → read-only `prod-{id}` → per-customer `deploy-{id}` workspaces |
+| Unit of delivery | Team of processes | **App**: `dev-{id}` → tagged **workspace version** (review + CI) → `production` alias on read-only `prod-{id}` → per-customer `deploy-{id}` workspaces (variables only, no code) |
 | Code reuse | Modules within the team | Modules + **workspace inheritance** (`base-app`, `base-integration-app`; read-only, non-transitive) |
 | Factorial API | Your own client + credentials (api key / OAuth) | **`FactorialClient`** from `base-app`; `FACTORIAL_TOKEN` auto-provisioned per customer; OAuth scopes declared at App creation |
 | Testing | Local `run` only → our offline harness | **`fcode test`** framework (input/output/error JSON, hooks, CI exit codes) + `fcode http` local webhook server + our offline harness |
@@ -22,10 +22,10 @@ Both platforms run the same engine (Factorial acquired YepCode; Factorial Code i
 ## 2. Shared engine facts (both platforms)
 
 - Triggers: on-demand, cron/schedules, webhooks (per-process URL), embedded forms (JSON Schema / react-jsonschema-form), REST API, MCP.
-- **Sync webhook timeout: 60s** (HTTP 408; execution continues). Prefer async acknowledgment.
-- No automatic retries at process level — code must be idempotent and re-runnable. Wire a workspace/team error-handler process (ships in `base-app` on Factorial Code).
-- Datastore: team-level KV, strings/numbers, size/entry limits. Storage: cloud files. Local disk: ephemeral.
-- Logs capped (lines and size) — log summaries.
+- **Sync webhook timeout: 60s** (HTTP 408; execution continues). Prefer async acknowledgment. Webhook control headers on Factorial Code use the `Fcode-*` prefix (`Fcode-Async`, `Fcode-Version-Tag`, `Fcode-Comment`, `Fcode-Initiated-By`; responses carry `Fcode-Execution-ID`).
+- No automatic retries at process level — code must be idempotent and re-runnable. Wire a workspace/team error-handler process (ships in `base-app` on Factorial Code). *(Retry behavior is documented for the YepCode engine; Factorial Code docs don't restate it — treat as engine-level fact until confirmed.)*
+- Datastore: team-level KV, strings/numbers, size/entry limits. **Paid-plans-only on Factorial Code** — confirm availability before designing state around it. Storage: cloud files (Factorial Code adds the `@factorialco/fcode-sdk` / `factorial-fcode-sdk` external SDK with signed URLs and automatic form-file uploads). Local disk: ephemeral.
+- Logs capped (lines and size) — log summaries. *(Caps documented for YepCode; unstated for Factorial Code — assume they apply.)*
 - Dependency installs happen asynchronously after manifest changes; executions use the old set until done.
 - Static egress IP for allowlisting (Factorial Code: `34.89.54.108`).
 - Engine limits (timeouts, memory) are plan-dependent on YepCode and not published for Factorial Code — **confirm hard limits with the platform team before designing around them**.
@@ -43,6 +43,10 @@ Default questions the build brief must answer:
 
 **YepCode (Wellhub pattern):** git is the source of truth. `scripts/deploy.py` publishes process/module versions through the team-scoped Management API and repoints aliases; GitHub Action runs it on push (PRs = dry-run plan). Secrets: `YEPCODE_API_TOKEN`, `YEPCODE_TEAM`.
 
-**Factorial Code:** `fcode clone dev-{app-id}` → build with skills/samples → `fcode run` + `fcode test` locally → `fcode push` → test from a Factorial demo environment → request release (review + CI) → prod → customer activation runs the `{vendor}-setup` form process.
+**Factorial Code:** App creation in the console is auto-provisioned — no approval step (approval applies only to initial platform access); OAuth scopes are optional at creation and can be added later from the App's OAuth tab. Then: `fcode clone dev-{app-id}` → build with skills/samples → `fcode run` + `fcode test` locally → `fcode push` → test from a Factorial demo environment → **request release, which publishes a tagged workspace version of `dev-{app-id}`** (Factorial review + CI) → promotion points the `production` alias of `prod-{app-id}` at that tag → customer activation runs the `{vendor}-setup` form process.
 
-Also install the official platform skills in Factorial Code projects: `npx skills add factorialco/factorial-code-skills` (fcode-core-concepts, fcode-python, fcode-javascript, fcode-json-schema, fcode-cli, fcode-forms, fcode-examples).
+The CLI clone also versions per-process `metadata.json` (webhook/form config, auth mode) and `team.json` (timezone, parents, error handler, versions/aliases) — treat them as committable config artifacts, not generated noise.
+
+Official platform skills are installed by `fcode clone` by default (`--skipSkillsSetup` to opt out; manual: `npx skills add factorialco/factorial-code-skills` — fcode-core-concepts, fcode-python, fcode-javascript, fcode-json-schema, fcode-cli, fcode-forms, fcode-examples).
+
+**Known doc inconsistencies (Factorial Code docs, as of 2026-08):** the `fcode test` page names workspace env layers `.env.local`/`.env` while the rest of the CLI docs use `variables.local.env`; the datastore page shows `fcode.datastore.delete()` while test-hook examples use `del_()`. Verify empirically before relying on either name.

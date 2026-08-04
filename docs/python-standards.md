@@ -50,7 +50,7 @@ main()
 ## 4. Dependencies
 
 - Prefer the stdlib. Every third-party dependency must be justified in the build brief.
-- Declare inline, pinned: `# @add-package pkg==x.y.z` (Factorial Code also supports `dependencies/requirements.txt`).
+- Declare inline, pinned, **single equals**: `# @add-package pkg=x.y.z` (e.g. `# @add-package openai=1.59.8`). Factorial Code also supports `dependencies/requirements.txt`.
 - Dependencies are team-global by default — coordinate versions across processes.
 
 ## 5. HTTP and Factorial API

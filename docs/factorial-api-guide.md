@@ -35,7 +35,7 @@ Convention (Wellhub pattern for YepCode): an `auth_factorial` module switched by
 
 - **Webhooks carry no event-type payload field**: the operation (create/update/terminate) must be inferred from the delivered employee state and subscription type.
 - **`create_with_contract` webhooks can arrive with null emails** — enrichment requires a follow-up `GET employees/{id}` re-read.
-- Webhook subscriptions are created via `POST api_public/webhook_subscriptions`; validate deliveries (challenge check / signature) per `python-standards.md` §9.
+- Webhook subscriptions are created via `POST api_public/webhook_subscriptions`; validate deliveries (challenge check / signature) per `python-standards.md` §9. Factorial's subscription challenge arrives in the `x-factorial-wh-challenge` header (`checkWebhookChallenge` in `base-app` handles it on Factorial Code).
 - Custom-field lookups go `custom_fields/fields?label=` → `custom_fields/values?field_id=&value=` (the alsina pattern for external-ID → employee resolution).
 
 When a live run disproves an assumption, record it in the project's `BUILD_DECISIONS.md` and propose promoting it here if it generalizes.
