@@ -24,7 +24,7 @@ specs/changes/<change-id>/          # change-id: kebab-case, e.g. add-eligibilit
 4. **Specify** — create the change folder: `spec.md` (requirements + WHEN/THEN scenarios) and `tasks.md`. Task 0 is always *create feature branch*; final tasks are always *verification* (testing-standards §5) and *update docs* (documentation-standards §5).
 5. **Implement** — `peer-dev` executes tasks one at a time, TDD, checking off only after verification. Low-level pieces may be handed to Gemini via `gemini-brief`.
 6. **Review** — `peer-qa` runs the full suites; then `adversarial-review` (fresh session/agent) red-teams the implementation against `spec.md`. Verdict PASS / PASS WITH GAPS / FAIL gates completion. `code-audit` on demand for broader health checks.
-7. **Close** — `update-docs`; if the project is **released** (a version has been pushed to production), add the `CHANGELOG.md` entry (Fix / Improvement / Maintenance, per `documentation-standards.md` §6); commit (imperative English messages, ticket prefix when applicable, never secrets), PR.
+7. **Close** — `update-docs`; if the project is **released** (a version has been pushed to production), add the `CHANGELOG.md` entry (Fix / Improvement / Maintenance, per `documentation-standards.md` §6); commit (imperative English messages, ticket prefix when applicable, never secrets, sole authorship — the user's own git identity, no `Co-Authored-By: Claude` or similar attribution trailer unless asked for), PR.
 
 ## 3. Script track lifecycle
 

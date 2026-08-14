@@ -47,6 +47,6 @@ Default questions the build brief must answer:
 
 The CLI clone also versions per-process `metadata.json` (webhook/form config, auth mode) and `team.json` (timezone, parents, error handler, versions/aliases) — treat them as committable config artifacts, not generated noise.
 
-Official platform skills are installed by `fcode clone` by default (`--skipSkillsSetup` to opt out; manual: `npx skills add factorialco/factorial-code-skills` — fcode-core-concepts, fcode-python, fcode-javascript, fcode-json-schema, fcode-cli, fcode-forms, fcode-examples).
+Official platform skills are installed by `fcode clone` by default (`--skipSkillsSetup` to opt out; manual: `npx skills add factorialco/factorial-code-skills` — fcode-core-concepts, fcode-python, fcode-javascript, fcode-json-schema, fcode-cli, fcode-forms, fcode-examples, fcode-agent). Roster confirmed against `code.factorialhr.com/docs/skills` on 2026-08-13 — re-verify before relying on it, Factorial adds skills over time. Don't install all of them reflexively; `migrate-platform` Phase 2 gives per-skill guidance on which ones a given project actually needs.
 
 **Known doc inconsistencies (Factorial Code docs, as of 2026-08):** the `fcode test` page names workspace env layers `.env.local`/`.env` while the rest of the CLI docs use `variables.local.env`; the datastore page shows `fcode.datastore.delete()` while test-hook examples use `del_()`. Verify empirically before relying on either name.

@@ -30,4 +30,4 @@
 
 - [ ] `update-docs` per documentation-standards §5 (catalogs, manifest, mapping spec, env table, BUILD_DECISIONS)
 - [ ] Released project? Add `CHANGELOG.md` entry (Fix / Improvement / Maintenance)
-- [ ] Commit + PR (imperative English message, ticket prefix, no secrets)
+- [ ] Commit + PR (imperative English message, ticket prefix, no secrets, sole authorship — the user's own git identity; no `Co-Authored-By: Claude`/"Generated with Claude Code" or similar attribution trailer unless the user asks for one)
