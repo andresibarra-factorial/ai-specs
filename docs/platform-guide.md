@@ -2,51 +2,84 @@
 
 Both platforms run the same engine (Factorial acquired YepCode; Factorial Code is its evolution integrated with Factorial). The platform is chosen **case by case per project**, declared in the build brief. Projects may start on YepCode and later migrate (see the `migrate-platform` skill).
 
+Facts marked *(verified 2026-08-26)* come from a real `fcode clone` of a dev workspace and its official `fcode-*` skills — trust them over older doc readings.
+
 ## 1. Side-by-side
 
 | Area | YepCode | Factorial Code |
 |---|---|---|
 | Docs | https://yepcode.io/docs/ | https://code.factorialhr.com/docs |
-| Global SDK object | `yepcode.*` (injected) | `fcode.*` (`from fcode import fcode, logger`) |
+| Global SDK object | `yepcode.*` (injected) | `fcode.*` (injected; also `from fcode import fcode, logger`) |
 | Python / Node | 3.12 / 20 | **3.13 / 22** |
-| CLI | `@yepcode/cli` | `@factorialco/fcode-cli` (`fcode clone/run/push/http/test`) |
-| Unit of delivery | Team of processes | **App**: `dev-{id}` → tagged **workspace version** (review + CI) → `production` alias on read-only `prod-{id}` → per-customer `deploy-{id}` workspaces (variables only, no code) |
-| Code reuse | Modules within the team | Modules + **workspace inheritance** (`base-app`, `base-integration-app`; read-only, non-transitive) |
-| Factorial API | Your own client + credentials (api key / OAuth) | **`FactorialClient`** from `base-app`; `FACTORIAL_TOKEN` auto-provisioned per customer; OAuth scopes declared at App creation |
-| Testing | Local `run` only → our offline harness | **`fcode test`** framework (input/output/error JSON, hooks, CI exit codes) + `fcode http` local webhook server + our offline harness |
-| Deploy | Git repo + GitHub Action → YepCode Management API (Wellhub pattern: branch → alias `br-<branch>`, `main` → `production`) | `fcode push` to dev workspace; release request → Factorial review + CI → prod; customers auto-provision deploy workspaces |
-| Email | Bring your own | `fcode.sendMail` built in (3/execution) |
-| Secrets locally | `credentials/*.json` + `variables.env` | `variables.local.env` (never synced); no credentials folder |
-| Multi-tenancy | One team per client (our convention) | Per-customer deploy workspace with isolated variables/token |
+| CLI | `@yepcode/cli` | `@factorialco/fcode-cli`: `clone/pull/add/run/push/status/http`, `team:*`, `variables:*`, `i18n:*`, `remote:add` |
+| Unit of delivery | Team of processes | **App**: `dev-{id}` → release request (semver + notes, platform-validated) → read-only `prod-{appId}` (created on first release) with the **`stable` alias** → per-customer `deploy-{installationId}` workspaces created by marketplace install (variables only, no code) |
+| Code reuse | Modules within the team | Modules + **workspace inheritance** via `team.json` `parentTeamSlugs` (≤5 direct parents, **non-transitive**, read-only where inherited). Python apps inherit **`base-app-py`** |
+| Factorial API | Your own client + credentials (api key / OAuth) | **`factorial-sdk` module** (inherited): `create_factorial_client()` returns an authenticated `FactorialClient` from the `factorial-api-client` SDK; `FACTORIAL_TOKEN` auto-provisioned per deployment. Hand-rolled Factorial HTTP clients are a release **Blocker** |
+| Process entry | `main.py`, define `main()`, **call `main()` at the end** | `main.py`, define `main()`, **NEVER call it yourself** (the platform invokes it — self-invocation is a release Blocker) |
+| Module naming | Underscored valid Python identifiers (hyphens break the importer — verified in production) | **kebab-case slugs are the platform convention** (`shopify-client`); entry file `modules/<slug>/<slug>.py\|js`, never `main.py`/`index.js`. snake_case slugs work but validation flags naming as a Warning |
+| Testing | Local `run` only → our offline harness | `fcode run` (local execution), `fcode http` (local webhook/forms server replicating cloud auth), `fcode-code-validation` (pre-release static gate) + our offline harness |
+| Deploy | Git repo + GitHub Action → YepCode Management API (Wellhub pattern) | `fcode push` to the dev workspace (syncs **registered resources only** — never loose files; `fcode add` registers new ones). Release/promotion below |
+| Email | Bring your own | `fcode.send_mail` built in (3/execution; From fixed; logged-not-sent locally) |
+| Secrets locally | `credentials/*.json` + `variables.env` | 3-file model below; secrets pull as `********` placeholders |
+| Multi-tenancy | One team per client (our convention) | Per-customer `deploy-{installationId}` workspace, inheriting the app workspace; carries only that customer's variables and `FACTORIAL_TOKEN` |
 
 ## 2. Shared engine facts (both platforms)
 
 - Triggers: on-demand, cron/schedules, webhooks (per-process URL), embedded forms (JSON Schema / react-jsonschema-form), REST API, MCP.
-- **Sync webhook timeout: 60s** (HTTP 408; execution continues). Prefer async acknowledgment. Webhook control headers on Factorial Code use the `Fcode-*` prefix (`Fcode-Async`, `Fcode-Version-Tag`, `Fcode-Comment`, `Fcode-Initiated-By`; responses carry `Fcode-Execution-ID`).
-- No automatic retries at process level — code must be idempotent and re-runnable. Wire a workspace/team error-handler process (ships in `base-app` on Factorial Code). *(Retry behavior is documented for the YepCode engine; Factorial Code docs don't restate it — treat as engine-level fact until confirmed.)*
-- Datastore: team-level KV, strings/numbers, size/entry limits. **Paid-plans-only on Factorial Code** — confirm availability before designing state around it. Storage: cloud files (Factorial Code adds the `@factorialco/fcode-sdk` / `factorial-fcode-sdk` external SDK with signed URLs and automatic form-file uploads). Local disk: ephemeral.
-- Logs capped (lines and size) — log summaries. *(Caps documented for YepCode; unstated for Factorial Code — assume they apply.)*
-- Dependency installs happen asynchronously after manifest changes; executions use the old set until done.
+- **Sync webhook timeout: 60s** (HTTP 408; execution continues). Prefer async acknowledgment. Form submissions have a ~1-minute request timeout too.
+- No automatic retries at process level — code must be idempotent and re-runnable. On Factorial Code, wire the workspace error handler (`team.json` `errorHandlerConfig` → the inherited `workspace-error-handler` process, which emails `ERROR_NOTIFY_EMAIL`).
+- Datastore: team-level KV, **strings/numbers only** (JSON-serialize objects). Storage: cloud files; local disk is ephemeral — on Factorial Code write temp files under `TMP_DATA_DIR` and use `fcode.storage` (upload/download/list/`create_signed_url`).
+- Logs capped (lines and size) — log summaries.
+- Dependency installs happen asynchronously after manifest changes; executions use the old set until done. Only a parent's *installed* dependencies inherit.
 - Static egress IP for allowlisting (Factorial Code: `34.89.54.108`).
-- Engine limits (timeouts, memory) are plan-dependent on YepCode and not published for Factorial Code — **confirm hard limits with the platform team before designing around them**.
 
-## 3. Choosing a platform
+## 3. Factorial Code specifics *(verified 2026-08-26)*
 
-Default questions the build brief must answer:
+**Workspace files** (all synced by the CLI; commit them except where noted):
 
-- Will this be distributed to multiple Factorial customers, or reviewed/listed on the Marketplace? → **Factorial Code** (per-customer deploys, OAuth token provisioning).
-- Does it push payroll/ERP-supported capabilities (compensation, expenses, leave updates)? → Factorial Code **Integrations Framework** (per-item retries and status surfaced to users).
+| File | Holds |
+|---|---|
+| `team.json` | `parentTeamSlugs`, `zoneId`, `errorHandlerConfig` (by process **slug**), `webhookAuth`, `primaryLocale`, `versions`/`aliases` (editing these releases on push — don't touch unless asked) |
+| `processes/<slug>/metadata.json` | name, description, tags, `webhook` (`enabled`, `authMode: NONE\|TEAM\|CUSTOM`, `auth.variableKey` — stores the variable *name*, never a token), `form` (`enabled`, `authMode: FACTORIAL\|NONE`, marketplace `appRole: INSTALL\|SETTINGS\|USER_FACING_FORM\|UNINSTALL`) |
+| `variables.env` | Variables this workspace owns (masked `********` for secrets) — committed |
+| `variables.inherited.env` | From parents — pull-only, **gitignored** |
+| `variables.local.env` | Local-only real secret values — never synced, never committed |
+| `variables.meta.json` | Per-variable `isSensitive` (immutable once pushed) |
+| `dependencies/requirements.txt` / `package.json` | Owned deps (pin here); `*.inherited.*` are pull-only |
+| `.fcode/` | CLI sync state (content hashes, remotes) — local, gitignore it |
+| `datastore.json`, `storage/` | Local emulation of the datastore and file storage for `fcode run` — gitignored (the CLI adds the entries) |
+| `skills-lock.json`, `.agents/`, `.claude/skills/*` symlinks | Official skills installed by `fcode clone` — local tooling |
+
+- **Variable resolution** (local runs and cloud): `variables.local.env` → `variables.env` → `variables.inherited.env`. Declaring a key *is* the override — don't copy parent variables into a child. Runtime helper `fcode.variables.set` creates variables **sensitive by default** (pass `sensitive=False` for plain config); `delete` on an inherited key is a silent no-op.
+- **`base-app-py` provides** (inherited, read-only, gitignored via a CLI-managed `.gitignore` block): modules `factorial-sdk`, `factorial-utils` (company id, token validation, `setup_webhook`/list/delete — one subscription per type+company; on 422 "already taken" reuse and repoint), `fcode-logs` (`LOG_LEVEL`-gated), `fcode-utils`, `fcode-forms`, `mail-helper`, `error-handler`; processes `workspace-error-handler`, `datastore-inspector` (inspect/clean/export the datastore); variables `FACTORIAL_TOKEN`, `FACTORIAL_BASE_URL`, `FACTORIAL_CHALLENGE_TOKEN`, `ERROR_NOTIFY_EMAIL`, `LOG_LEVEL`; dependency `factorial-api-client`.
+- **Webhook auth is platform-level**: set `webhook.authMode: TEAM` on the process and `webhookAuth: { "headerName": "x-factorial-wh-challenge", "variableKey": "FACTORIAL_CHALLENGE_TOKEN" }` in `team.json` — the platform 401s invalid callers before the process runs; in-process token checking is flagged by validation. `webhookAuth` is **not inherited** — set it in every workspace addressed by a webhook URL. Webhook URL: `https://code.factorialhr.com/platform/api/<team-slug>/webhooks/<process-slug>?version_tag=stable` — **always pin `stable`**; an unknown tag silently runs the current version. `Fcode-*` headers are reserved (`Fcode-Async`, `Fcode-Version-Tag`, …).
+- **Schedules** can be managed from process code: `fcode.schedule.create/list/update/pause/resume/delete` (6-field cron, e.g. `0 0 6 * * SUN`, evaluated in the team's `zoneId`, or one-off `date_time`) — runtime state, **not** committed in `metadata.json`. Whether a child workspace (e.g. a `deploy-`) can schedule processes it *inherits* is unverified — the "never reschedule inherited resources" rule may apply; confirm before designing per-customer cadences around it.
+- **Runtime surface** *(verified 2026-08-26)*: `fcode.team` is injected (`{baseUrl, slug}`; the inherited `fcode-utils.webhook_url(slug)` builds a process's public webhook URL from it — useful for links in task/alert bodies); `fcode.processes.run("slug")` runs another process; `fcode.execution.*` carries execution/process/schedule metadata; the inherited `error-handler` module exports `notify_failure` / `report_error` / `with_error_handler` (best-effort email via `mail-helper.branded_html` + `fcode.send_mail`).
+- **i18n**: `i18n/<locale>.yaml` + `fcode.i18n("key")` (never alias the call). **MCP**: tag a process (e.g. `mcp-tool`) and it becomes an MCP tool automatically.
+- **`# @add-package`** is needed only when the pip package name differs from the import name (`# @add-package argon2-cffi` above `import argon2`); pin versions in `dependencies/requirements.txt`.
+- **git vs fcode are independent**: `fcode push` never uploads loose files (docs, templates, `.DS_Store`) — only registered resources. Conversely the CLI-managed `.gitignore` block covers inherited resources and local state but **not** `.DS_Store`/`__pycache__` — add those yourself, as `__pycache__/` (any depth; `*/__pycache__` matches one level only).
+
+## 4. Choosing a platform
+
+- Distributed to multiple Factorial customers, or reviewed/listed on the Marketplace? → **Factorial Code** (per-customer deploy workspaces, OAuth token provisioning; private apps are allow-listed and installed per company by an admin/FDE).
+- Pushing payroll/ERP-supported capabilities (compensation, expenses, employee updates such as leaves) from Factorial to an external system? → Factorial Code **Integrations Framework** (`base-integration-app`'s `OutboundSync`: override `process()` and hooks, never `run()`; per-item success/invalid/failed statuses surfaced to users). Other shapes (forms, schedules, webhooks, non-supported data types) → standard app.
 - Single-client, internal, or already living in an existing YepCode team? → **YepCode** is fine; keep the Wellhub deploy pattern.
-- Undecided / might migrate later? → Start where delivery is fastest, but follow `python-standards.md` strictly — the standards are written so a migration is mostly mechanical (see `migrate-platform`).
+- Undecided / might migrate later? → Start where delivery is fastest, follow `python-standards.md` strictly — migration is mostly mechanical (see `migrate-platform`).
 
-## 4. Deployment workflow
+## 5. Deployment workflow
 
 **YepCode (Wellhub pattern):** git is the source of truth. `scripts/deploy.py` publishes process/module versions through the team-scoped Management API and repoints aliases; GitHub Action runs it on push (PRs = dry-run plan). Secrets: `YEPCODE_API_TOKEN`, `YEPCODE_TEAM`.
 
-**Factorial Code:** App creation in the console is auto-provisioned — no approval step (approval applies only to initial platform access); OAuth scopes are optional at creation and can be added later from the App's OAuth tab. Then: `fcode clone dev-{app-id}` → build with skills/samples → `fcode run` + `fcode test` locally → `fcode push` → test from a Factorial demo environment → **request release, which publishes a tagged workspace version of `dev-{app-id}`** (Factorial review + CI) → promotion points the `production` alias of `prod-{app-id}` at that tag → customer activation runs the `{vendor}-setup` form process.
+**Factorial Code** *(verified 2026-08-26)*:
 
-The CLI clone also versions per-process `metadata.json` (webhook/form config, auth mode) and `team.json` (timezone, parents, error handler, versions/aliases) — treat them as committable config artifacts, not generated noise.
+1. **App creation** (console, auto-provisioned): name, purpose, **language** (selects the base workspaces, e.g. `base-app-py`), OAuth scopes (extendable later from the OAuth tab), Integrations-framework opt-in (only for supported capabilities).
+2. **Build locally**: `fcode clone dev-{id}` (installs the official skills; `--skipSkillsSetup` to opt out) → edit → `fcode add` (**new** resources only) → `fcode run` / `fcode http` → `fcode push`. Pushing updates the *current* code only; consumers pinned to `stable` are untouched.
+3. **Test installs** against **demo companies** in the **Dev Marketplace** (real OAuth flow; each install creates a `deploy-{installationId}` workspace; its `FACTORIAL_TOKEN` is copyable for local runs in that company's context).
+4. **Validate** with the `fcode-code-validation` skill (Blocker/Warning/Suggestion → ✅/❌ `APP_VALIDATION_REPORT.md`); any Blocker blocks release.
+5. **Release** from the App's Production tab: semver + notes; the platform validates (best practices, template reuse, secrets handling) and snapshots a pinned workspace version; first release creates `prod-{appId}` and flips the app to **published**.
+6. **Promote** (Factorial team admin, or platform operators for partner teams — grant rides in the token, `fcode login` refreshes it): per the `fcode-release` skill — `fcode clone dev-{id}` → `remote:add prod-{id}` → `fcode pull` (mandatory) → `fcode add` → confirm → `fcode push`. Never `--force`.
+7. **Rollout/rollback = moving `stable`** (web UI Versions tab or `team:aliases:set`) — never move it or publish versions unless explicitly asked.
 
-Official platform skills are installed by `fcode clone` by default (`--skipSkillsSetup` to opt out; manual: `npx skills add factorialco/factorial-code-skills` — fcode-core-concepts, fcode-python, fcode-javascript, fcode-json-schema, fcode-cli, fcode-forms, fcode-examples, fcode-agent). Roster confirmed against `code.factorialhr.com/docs/skills` on 2026-08-13 — re-verify before relying on it, Factorial adds skills over time. Don't install all of them reflexively; `migrate-platform` Phase 2 gives per-skill guidance on which ones a given project actually needs.
+**Org repo template caution** *(verified 2026-08-26)*: `factorialco/fde-factorialcode-template` is still the YepCode deploy harness (README, `scripts/deploy.py`, `.github/workflows/deploy.yml`, `YEPCODE_*` secrets). For a Factorial Code repo created from it, keep the `processes/`/`modules/` layout but strip the YepCode deploy wiring — the `fcode` CLI replaces it — and rewrite README/SETUP for the fcode flow.
 
-**Known doc inconsistencies (Factorial Code docs, as of 2026-08):** the `fcode test` page names workspace env layers `.env.local`/`.env` while the rest of the CLI docs use `variables.local.env`; the datastore page shows `fcode.datastore.delete()` while test-hook examples use `del_()`. Verify empirically before relying on either name.
+Official skills installed by `fcode clone` (roster verified 2026-08-26; tracked in `skills-lock.json`): fcode-core-concepts, fcode-cli, fcode-python, fcode-javascript, fcode-json-schema, fcode-forms, fcode-i18n, fcode-agent, fcode-ama, fcode-examples, fcode-release, fcode-code-validation (from `factorialco/factorial-code-skills`), factorial-api-sdks (from `factorialco/factorial-api-sdks`). Don't install them reflexively elsewhere; `migrate-platform` Phase 2 says which ones a project needs.

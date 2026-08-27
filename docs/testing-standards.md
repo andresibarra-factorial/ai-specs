@@ -39,16 +39,20 @@ Suites are layered to mirror the architecture; fixtures are the contract record 
 Automated enforcement of platform constraints that only fail at deploy time otherwise:
 
 - Every `import_module` / `import` call uses a **literal string** argument.
-- Module names are valid Python identifiers; process slugs are hyphenated.
-- Every process has a `main()`; no top-level `return`.
+- Module slugs follow the platform convention declared in the build brief (kebab-case on Factorial Code, underscored identifiers on YepCode) and the entry file is named after the slug; process slugs are hyphenated.
+- Every process has a `main()`; no top-level `return`; on Factorial Code, no self-invocation of `main()` (release-validation Blocker).
 - No stdlib-shadowing module names.
 - Datastore keys built only through the sanctioned `make_key` helper.
 
 Extend this file whenever a new deploy-time failure mode is discovered.
 
-## 4. `fcode test` (Factorial Code projects)
+## 4. Platform-level testing on Factorial Code
 
-In addition to the offline harness, ship `fcode test` suites per process:
+> **Local runtime note:** `fcode run` emulates the datastore in a local gitignored `datastore.json` (exposing `get_all()` where the cloud exposes `keys()`) and storage under `storage/`; `fcode.send_mail` is logged, not sent, locally.
+>
+> **Availability caution (2026-08-26):** the current CLI's own `fcode-cli` skill documents `clone/pull/add/run/push/status/http` — **no `fcode test` command**. Until `fcode test` is confirmed available, platform testing is `fcode run <slug> --parameters …` per process plus `fcode http` for webhook/form flows, with the offline harness as the authoritative suite and `fcode-code-validation` as the static release gate.
+
+Where/when `fcode test` is available, ship suites per process:
 
 - `processes/<slug>/tests/<NN-name>/input.json` (+ `output.json` for exact-match, or `error.json` for expected failure; omit both = smoke test).
 - Env overrides: per-test `variables.test.env` > global `tests/variables.test.env` > `.env.local` > `.env`.
@@ -59,7 +63,7 @@ In addition to the offline harness, ship `fcode test` suites per process:
 ## 5. Mandatory verification steps (before checking off any implementation task)
 
 1. Run the full offline suite (`python3 test/run.py`) — all green.
-2. Factorial Code: run `fcode test` — all green.
+2. Factorial Code: run the per-process platform checks (`fcode test` where available; otherwise `fcode run` with representative parameters) — all green.
 3. If the task touched state, verify datastore/fixture state pre/post and restore it.
 4. Write a verification report from `templates/test-report.md` into `specs/changes/<change-id>/reports/YYYY-MM-DD-<task>-verification.md`.
 5. Only then mark the task `[x]` and run `update-docs`.
