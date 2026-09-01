@@ -39,7 +39,7 @@ Facts marked *(verified 2026-08-26)* come from a real `fcode clone` of a dev wor
 
 | File | Holds |
 |---|---|
-| `team.json` | `parentTeamSlugs`, `zoneId`, `errorHandlerConfig` (by process **slug**), `webhookAuth`, `primaryLocale`, `versions`/`aliases` (editing these releases on push — don't touch unless asked) |
+| `settings.json` (was `team.json` before CLI v3; key `parentTeams`, was `parentTeamSlugs`) | `parentTeams`, `zoneId`, `errorHandlerConfig` (by process **slug**), `webhookAuth`, `primaryLocale`, `versions`/`aliases` (editing these releases on push — don't touch unless asked) |
 | `processes/<slug>/metadata.json` | name, description, tags, `webhook` (`enabled`, `authMode: NONE\|TEAM\|CUSTOM`, `auth.variableKey` — stores the variable *name*, never a token), `form` (`enabled`, `authMode: FACTORIAL\|NONE`, marketplace `appRole: INSTALL\|SETTINGS\|USER_FACING_FORM\|UNINSTALL`) |
 | `variables.env` | Variables this workspace owns (masked `********` for secrets) — committed |
 | `variables.inherited.env` | From parents — pull-only, **gitignored** |
@@ -51,12 +51,37 @@ Facts marked *(verified 2026-08-26)* come from a real `fcode clone` of a dev wor
 | `skills-lock.json`, `.agents/`, `.claude/skills/*` symlinks | Official skills installed by `fcode clone` — local tooling |
 
 - **Variable resolution** (local runs and cloud): `variables.local.env` → `variables.env` → `variables.inherited.env`. Declaring a key *is* the override — don't copy parent variables into a child. Runtime helper `fcode.variables.set` creates variables **sensitive by default** (pass `sensitive=False` for plain config); `delete` on an inherited key is a silent no-op.
-- **`base-app-py` provides** (inherited, read-only, gitignored via a CLI-managed `.gitignore` block): modules `factorial-sdk`, `factorial-utils` (company id, token validation, `setup_webhook`/list/delete — one subscription per type+company; on 422 "already taken" reuse and repoint), `fcode-logs` (`LOG_LEVEL`-gated), `fcode-utils`, `fcode-forms`, `mail-helper`, `error-handler`; processes `workspace-error-handler`, `datastore-inspector` (inspect/clean/export the datastore); variables `FACTORIAL_TOKEN`, `FACTORIAL_BASE_URL`, `FACTORIAL_CHALLENGE_TOKEN`, `ERROR_NOTIFY_EMAIL`, `LOG_LEVEL`; dependency `factorial-api-client`.
-- **Webhook auth is platform-level**: set `webhook.authMode: TEAM` on the process and `webhookAuth: { "headerName": "x-factorial-wh-challenge", "variableKey": "FACTORIAL_CHALLENGE_TOKEN" }` in `team.json` — the platform 401s invalid callers before the process runs; in-process token checking is flagged by validation. `webhookAuth` is **not inherited** — set it in every workspace addressed by a webhook URL. Webhook URL: `https://code.factorialhr.com/platform/api/<team-slug>/webhooks/<process-slug>?version_tag=stable` — **always pin `stable`**; an unknown tag silently runs the current version. `Fcode-*` headers are reserved (`Fcode-Async`, `Fcode-Version-Tag`, …).
+- **`base-app-py` provides** (inherited, read-only, gitignored via a CLI-managed `.gitignore` block): modules `factorial-sdk`, `factorial-utils` (company id, token validation, `setup_webhook`/list/delete — one subscription per type+company; on 422 "already taken" reuse and repoint), `fcode-logs` (`LOG_LEVEL`-gated), `fcode-utils`, `fcode-forms`, `mail-helper`, `error-handler`; processes `workspace-error-handler`, `datastore-inspector` (inspect/clean/export the datastore); variables **`FACTORIAL_BASE_URL` and `ERROR_NOTIFY_EMAIL` only**; dependency `factorial-api-client`.
+- ⚠️ **`base-app-py` does *not* provide `FACTORIAL_TOKEN`, `FACTORIAL_CHALLENGE_TOKEN` or `LOG_LEVEL`** *(corrected 2026-09-01 — `fcode variables:status --showInherited` lists exactly two inherited keys)*. An earlier revision of this guide claimed it did; acting on that claim deleted a workspace-owned `FACTORIAL_CHALLENGE_TOKEN` in the belief a parent value would take over, and every webhook delivery 403'd until the value was restored by hand. **Verify what a parent actually provides with `--showInherited` before deleting any workspace-owned variable.**
+- **Webhook auth is platform-level**: set `webhook.authMode: TEAM` on the process and `webhookAuth: { "headerName": "x-factorial-wh-challenge", "variableKey": "FACTORIAL_CHALLENGE_TOKEN" }` in `settings.json` — the platform **403s** invalid callers before the process runs (a correct challenge that still 403s means the workspace-side value is missing, not that the header is wrong); in-process token checking is flagged by validation. `webhookAuth` is **not inherited** — set it in every workspace addressed by a webhook URL, **and the variable it names must be owned by that same workspace**. Auth resolves against the workspace in the URL, so an inherited value is invisible to it: `variableKey` is the one Factorial variable that must *not* inherit. Webhook URL: `https://code.factorialhr.com/platform/api/<team-slug>/webhooks/<process-slug>?version_tag=stable` — **always pin `stable`**; an unknown tag silently runs the current version. `Fcode-*` headers are reserved (`Fcode-Async`, `Fcode-Version-Tag`, …).
+- **Sensitive variables are opaque to the CLI — and `push` never carries their values.**
+  `fcode push` / `variables:push` *creates* a sensitive variable in the cloud but uploads no value, so a freshly
+  (re)created secret exists **empty** until someone types it into the Factorial Code UI. Nothing in the CLI will tell
+  you: `variables:status` and `variables:diff` both report "up to date" whether or not a value exists (they compare
+  only what they may read), and `contentHash` in `.fcode/remote.*.json` is `""` for **every** `isSensitive: true` key
+  — redacted, not empty. Confirm a secret by exercising it (an authenticated call), never by reading CLI state.
+  Corollary: **deleting a sensitive variable destroys its cloud value**, and only a human can restore it.
+- **Webhook subscriptions store the challenge they were registered with.** The workspace variable and every live
+  subscription must hold the *same* value — `GET /resources/api_public/webhook_subscriptions` returns `challenge`,
+  so compare hashes to check. Rotating one side alone orphans the other: a freshly generated UI value does not fix a
+  403, it breaks every existing subscription. Re-register them in the same pass or restore the original value.
+- **OAuth scopes are baked into the issued token.** Granting a new scope on the app does **not** widen tokens already
+  issued — they keep the grant they were minted with, and the endpoint keeps returning 403. Re-authorize /
+  reinstall to mint a fresh token, then re-copy it into the workspace variable. A 403 (not 404) on a resource path
+  means "exists, not granted"; 404 means the path itself is wrong — use the pair to tell a scope gap from a typo.
 - **Schedules** can be managed from process code: `fcode.schedule.create/list/update/pause/resume/delete` (6-field cron, e.g. `0 0 6 * * SUN`, evaluated in the team's `zoneId`, or one-off `date_time`) — runtime state, **not** committed in `metadata.json`. Whether a child workspace (e.g. a `deploy-`) can schedule processes it *inherits* is unverified — the "never reschedule inherited resources" rule may apply; confirm before designing per-customer cadences around it.
 - **Runtime surface** *(verified 2026-08-26)*: `fcode.team` is injected (`{baseUrl, slug}`; the inherited `fcode-utils.webhook_url(slug)` builds a process's public webhook URL from it — useful for links in task/alert bodies); `fcode.processes.run("slug")` runs another process; `fcode.execution.*` carries execution/process/schedule metadata; the inherited `error-handler` module exports `notify_failure` / `report_error` / `with_error_handler` (best-effort email via `mail-helper.branded_html` + `fcode.send_mail`).
 - **i18n**: `i18n/<locale>.yaml` + `fcode.i18n("key")` (never alias the call). **MCP**: tag a process (e.g. `mcp-tool`) and it becomes an MCP tool automatically.
 - **`# @add-package`** is needed only when the pip package name differs from the import name (`# @add-package argon2-cffi` above `import argon2`); pin versions in `dependencies/requirements.txt`.
+- **CLI v3 team-repo layout**: one git repo per team (e.g. `factorialco/factorial-fde`) holding every app. Clone
+  with `fcode team:clone`; each app is `<app>/` with a thin descriptor `settings.json` (id/name/description) and the
+  **actual workspace one level down at `<app>/app/`** — that inner directory is what every `fcode` command expects
+  as its cwd. `.claude/skills` inside an app is a **symlink to the team-level directory**: writing there edits every
+  app's skills, so keep project-specific skills outside it.
+- **Never read a CLI-managed local file as remote truth.** `variables.inherited.env`, `requirements.inherited.txt`,
+  `.fcode/remote.*.json` and a freshly-cloned `parentTeams: []` all reflect the last successful *sync*, not the
+  cloud. If a pull failed or a parent was detached, they will confidently describe a state that no longer exists.
+  Diagnose from the cloud — an API call, an execution, `--showInherited` — before concluding anything.
 - **git vs fcode are independent**: `fcode push` never uploads loose files (docs, templates, `.DS_Store`) — only registered resources. Conversely the CLI-managed `.gitignore` block covers inherited resources and local state but **not** `.DS_Store`/`__pycache__` — add those yourself, as `__pycache__/` (any depth; `*/__pycache__` matches one level only).
 
 ## 4. Choosing a platform
