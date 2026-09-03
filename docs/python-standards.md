@@ -78,6 +78,14 @@ def main():
 - Explicit domain errors (e.g. `FactorialAPIError` carrying status + truncated body); map platform/HTTP errors to domain errors at the client boundary.
 - Logging: concise summaries, not per-record spam (platform caps log lines/size). Structured messages: `logger.info("flush complete: pushed=%d failed=%d", ok, ko)`.
 - Factorial Code: log through the inherited `fcode-logs` module (`log = fcode.import_module("fcode-logs")`; `debug/info/warn/error`, gated by the `LOG_LEVEL` team variable, default `info`) — a project `log_utils` may wrap it for correlation ids, not replace it.
+  - **Documented exception:** a project logger may *replace* `fcode-logs` when it keeps the
+    same `LOG_LEVEL` gating **and** every level on a single stream. `fcode-logs` routes
+    warn/error to stderr; interleaving stdout and stderr is not order-guaranteed, so a
+    correlation-id trace through one ordered stream — the primary diagnostic for a
+    multi-stage integration — breaks. Wrapping buys conformance and costs ordering, and
+    `fcode-logs` offers no structure, correlation ids, redaction or chunking to gain in
+    return. Taken by the Wellhub integration on 2026-09-03; record the same reasoning in
+    `APP_VALIDATION_REPORT.md` (LOG-01) wherever it is used.
 - Concurrency (`ThreadPoolExecutor`) only when measured need exists; keep worker counts configurable.
 
 ## 9. Webhooks
