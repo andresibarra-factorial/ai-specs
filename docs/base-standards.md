@@ -15,7 +15,7 @@ Single source of truth for all AI agents (Claude, Gemini) working in this harnes
 ## 2. Language
 
 - **English** for all internal artifacts: code, comments, docstrings, tests, specs, commit messages, README files, task lists.
-- **Client-facing design deliverables** (docx/xlsx doc set) are produced in English, with a Spanish twin when the project requires it (see `documentation-standards.md` §4).
+- **Client-facing design deliverables** (docx/xlsx doc set) are produced in English, with a Spanish twin when the project requires it (see `documentation-standards.md` §5).
 
 ## 3. Specific standards
 
@@ -26,7 +26,7 @@ Single source of truth for all AI agents (Claude, Gemini) working in this harnes
 | [platform-guide.md](platform-guide.md) | YepCode vs Factorial Code: runtimes, deploy, limits, platform choice |
 | [factorial-api-guide.md](factorial-api-guide.md) | Factorial API: OAS convention, versioning, auth, pagination, quirks |
 | [testing-standards.md](testing-standards.md) | TDD, offline harness, `fcode test`, mandatory verification steps |
-| [documentation-standards.md](documentation-standards.md) | Client doc set, build brief, EN/ES rule, docs-update procedure |
+| [documentation-standards.md](documentation-standards.md) | Client doc set, build brief, app-level platform files (README / MARKETPLACE / CHANGELOG, canonical templates), EN/ES rule, docs-update procedure, project logs |
 | [spec-workflow.md](spec-workflow.md) | Development lifecycle: integration track and script track |
 
 ## 4. Project skills

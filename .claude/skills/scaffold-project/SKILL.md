@@ -18,11 +18,13 @@ Bootstrap a new project governed by this harness. **Ask before generating** — 
 ## Step 2 — Generate
 
 ```
-<project>/
+<project>/                    # Factorial Code: the app folder <app>/ in the team repo; the fcode workspace goes to <app>/app/
 ├── docs/CLAUDE.md            # from templates/build-brief.md, pre-filled with intake answers
 ├── docs/BUILD_PROMPT.md      # from templates/build-prompt.md (integration track)
 ├── BUILD_DECISIONS.md        # empty, with header (live-run discoveries log)
-├── CHANGELOG.md              # header only — stays empty until first release (documentation-standards §6)
+├── CHANGELOG.md              # header only — stays empty until first release (documentation-standards §7)
+├── README.md                 # app-level README from templates/app-readme.md via the `app-readme` skill (documentation-standards §3.1) — at <app>/, never inside <app>/app/
+├── MARKETPLACE.md            # Factorial Code only — marketplace listing from templates/app-marketplace.md via the `app-marketplace` skill (documentation-standards §3.2)
 ├── CLAUDE.md → points to docs/CLAUDE.md + the harness standards; GEMINI.md equivalent
 ├── modules/README.md         # empty catalog table
 ├── processes/README.md
@@ -32,10 +34,12 @@ Bootstrap a new project governed by this harness. **Ask before generating** — 
 ├── .gitignore                # .env, venv, logs, local variables
 └── platform wiring:
     ├── YepCode: scripts/deploy.py + .github/workflows/deploy.yml (copy Wellhub pattern)
-    └── Factorial Code: note to run `fcode clone dev-{app-id}` and `npx skills add factorialco/factorial-code-skills`
+    └── Factorial Code: `app/` = the workspace from `fcode clone dev-{app-id}` (run inside <app>/); `npx skills add factorialco/factorial-code-skills` at the team-repo root
 ```
 
 The harness skeleton must pass `python3 test/run.py` immediately (empty-but-green), and `test_static.py` ships with all platform-constraint checks active.
+
+After generating the skeleton, run the `app-readme` skill: it asks for the Catalogue metadata (client, market, status, type, owner, Jira epic, production date) and fills what the intake answers already settle; everything else is `To be confirmed` until design lands. On Factorial Code, then run the `app-readme` sibling `app-marketplace`: it asks visibility, support/help links and the external system's one-liner, and leaves every unsupported claim as `To be confirmed`. Never leave either file as the template with raw `<placeholders>` — `README.md`, `MARKETPLACE.md` and `CHANGELOG.md` are pushed to the platform with the app (documentation-standards §3).
 
 ## Step 3 — Hand off
 
