@@ -18,6 +18,7 @@ specs/changes/<change-id>/          # change-id: kebab-case, e.g. add-eligibilit
 
 ## 2. Integration track lifecycle
 
+0. **Assess** — a new request to connect Factorial with a third-party system starts with the `feasibility-assessment` skill: the Integration Feasibility Assessment (`documentation-standards.md` §1.1) gives the verdict, the gaps, the integration options and the open questions before anything is enriched, designed or quoted. Proceed only once the verdict is at least *Feasible with conditions* and every blocking item has an owner.
 1. **Enrich** — vague request? Run `enrich-req`. Output: implementation-ready requirement.
 2. **Design** — session with `peer-architect` (strongest model): explore ≥2 options with trade-offs, evaluate feasibility against `platform-guide.md` and the **latest OAS** (`factorial-oas` skill), decide platform and patterns. New project? `scaffold-project` first.
 3. **Document** — decisions land in the build brief (§locked decisions); for client-facing phases, `design-docs` produces/updates the 3-doc set; the root `README.md` (`app-readme`, documentation-standards §3.1) and, on Factorial Code, `MARKETPLACE.md` (`app-marketplace`, §3.2) are refreshed once the architecture is decided.
