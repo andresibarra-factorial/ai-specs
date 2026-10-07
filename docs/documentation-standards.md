@@ -40,7 +40,7 @@ Every project — integration or script track, YepCode or Factorial Code — shi
 
 Rules:
 
-- **Created at scaffold, refreshed at close.** `scaffold-project` creates it through the `app-readme` skill; `update-docs` refreshes it in the close step of every change (§6). A change is not closed with a stale root README. The platform pushes the file with the app, so it is customer-visible from the first release.
+- **Created at scaffold, refreshed at close.** `scaffold-project` creates it through the `app-readme` skill; `update-docs` refreshes it in the close step of every change (§6). A change is not closed with a stale root README. The platform pushes the file with the app from the first release onward.
 - **Evidence-bound.** Every fact is backed by the build brief, the design doc set, the code, `BUILD_DECISIONS.md`, `CHANGELOG.md` or the pinned OAS. Unknown → `To be confirmed`; explicitly not applicable → `N/A — <reason>`. No hedging language (`probably`, `might be`, `I assume`) and no unresolved `<placeholders>`.
 - **Metadata (§1) is asked, never guessed.** Client, Market, Status, Integration Type, Owner, Jira Epic and Production Date are collected from the user when the README is created and confirmed on each refresh; they are not stored anywhere else.
 - **§9 Changelog is derived from `CHANGELOG.md`** (§7): one row per released version, newest first, the Jira/PR reference taken from the entry lines. An unreleased project shows a single `Unreleased` row. Never edit §9 by hand.
@@ -51,7 +51,7 @@ Rules:
 
 ### 3.2 `MARKETPLACE.md` — the marketplace listing
 
-Factorial Code apps ship `<app>/MARKETPLACE.md` on the canonical template `templates/app-marketplace.md`: the fill-ready content of the **Apps → \<app\> → Publication** screen, one section per field, each within the field's limit (Tagline 140 characters · Full description 5,000 · Screenshots up to 10, PNG/JPEG/WebP, 2 MB each · Support and Help links 2,000 · Marketplace visibility). The file is the source the listing is filled from; DatoCMS content, when present, overrides it field by field.
+Factorial Code apps ship `<app>/MARKETPLACE.md` on the canonical template `templates/app-marketplace.md`: the fill-ready content of the **Apps → \<app\> → Publication** screen, one section per field, each within the field's limit (Tagline 140 characters · Full description 5,000 · Screenshots up to 10, PNG/JPEG/WebP, 2 MB each · Support and Help links 2,000 · Marketplace visibility — limits as shown on the Publication screen when the IsEazy listing was written, 2026-10; re-check them there when they look off). The file is the source the listing is filled from; DatoCMS content, when present, overrides it field by field.
 
 Rules:
 

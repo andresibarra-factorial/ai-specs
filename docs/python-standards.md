@@ -5,12 +5,12 @@ Python is our primary language. Runtime: **3.12 on YepCode**, **3.13 on Factoria
 ## 1. Project structure
 
 ```
-project/                   # Factorial Code team repo: this is <app>/, the fcode workspace is <app>/app/ (platform-guide §3)
+project/                   # YepCode: the repo root. Factorial Code team repo: this is <app>/ — see the note below the tree
 ├── README.md              # app-level README — canonical template templates/app-readme.md (documentation-standards §3.1)
 ├── MARKETPLACE.md         # Factorial Code only — marketplace listing, templates/app-marketplace.md (documentation-standards §3.2)
 ├── CHANGELOG.md           # release history (documentation-standards §7) — the three files above are pushed with the app
 ├── docs/                  # build brief (CLAUDE.md), design docs
-├── modules/               # reusable logic — one folder per module
+├── modules/               # reusable logic — one folder per module  (Factorial Code: inside the workspace <app>/app/)
 │   ├── <module_name>/<module_name>.py    (+ optional README.md, not deployed)
 │   └── README.md          # catalog with dependency table
 ├── processes/             # entrypoints — one folder per process
@@ -19,6 +19,8 @@ project/                   # Factorial Code team repo: this is <app>/, the fcode
 ├── test/                  # offline suite (see testing-standards.md)
 └── scripts/deploy.py      # YepCode projects only (Factorial Code uses fcode CLI)
 ```
+
+On a Factorial Code CLI v3 team repo (`platform-guide.md` §3) the project root is the app folder `<app>/`, which holds the three platform files, `docs/`, `test/`, `specs/changes/`, `BUILD_DECISIONS.md` and the descriptor `settings.json`; the fcode-synced resources — `modules/`, `processes/`, `dependencies/`, `i18n/`, `team.json` — live one level down in the workspace `<app>/app/`, the cwd every `fcode` command expects. On YepCode everything sits at the repo root as drawn.
 
 Layering (dependencies only point downward):
 **foundation** (config, log_utils, http_client) → **auth + API clients** → **state repositories** (over the datastore) → **domain logic** → **processes** (orchestrate only, no business logic).

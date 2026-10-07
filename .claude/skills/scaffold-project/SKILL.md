@@ -26,7 +26,7 @@ Bootstrap a new project governed by this harness. **Ask before generating** — 
 ├── README.md                 # app-level README from templates/app-readme.md via the `app-readme` skill (documentation-standards §3.1) — at <app>/, never inside <app>/app/
 ├── MARKETPLACE.md            # Factorial Code only — marketplace listing from templates/app-marketplace.md via the `app-marketplace` skill (documentation-standards §3.2)
 ├── CLAUDE.md → points to docs/CLAUDE.md + the harness standards; GEMINI.md equivalent
-├── modules/README.md         # empty catalog table
+├── modules/README.md         # empty catalog table   (Factorial Code: modules/, processes/ and the other fcode resources live inside <app>/app/)
 ├── processes/README.md
 ├── test/                     # offline harness skeleton per testing-standards.md §2
 │   ├── run.py  harness/yc_runtime.py  harness/http_mock.py  fixtures/factorial/  test_static.py

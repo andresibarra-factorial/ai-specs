@@ -63,7 +63,7 @@ that screen. DatoCMS content, when present, overrides these field by field.
 
 ### Screenshots
 
-<`To be captured once the app is running against a customer company.` or the list of files.>
+<Not part of the description text: this subsection lists what goes into the separate Screenshots field (up to 10 files, PNG/JPEG/WebP, 2 MB each). `To be captured once the app is running against a customer company.` or the list of files.>
 
 Suggested set:
 
