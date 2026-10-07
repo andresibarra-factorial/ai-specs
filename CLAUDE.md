@@ -16,7 +16,7 @@ Read `docs/base-standards.md` before doing anything. It links every other standa
 
 ## Skills
 
-Skills live in `.claude/skills/`. When a request matches a skill's description, load and follow its SKILL.md automatically. Roster: `enrich-req`, `explain`, `update-docs`, `code-audit`, `adversarial-review`, `factorial-oas`, `scaffold-project`, `design-docs`, `app-readme`, `app-marketplace`, `testing`, `migrate-platform`, `gemini-brief`, `writing-skills`.
+Skills live in `.claude/skills/`. When a request matches a skill's description, load and follow its SKILL.md automatically. Roster: `feasibility-assessment`, `enrich-req`, `explain`, `update-docs`, `code-audit`, `adversarial-review`, `factorial-oas`, `scaffold-project`, `design-docs`, `app-readme`, `app-marketplace`, `testing`, `migrate-platform`, `gemini-brief`, `writing-skills`.
 
 ## Agents
 

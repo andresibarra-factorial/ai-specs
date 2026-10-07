@@ -26,6 +26,7 @@ Single source of truth for all AI agents (Claude, Gemini) working in this harnes
 | [platform-guide.md](platform-guide.md) | YepCode vs Factorial Code: runtimes, deploy, limits, platform choice |
 | [factorial-api-guide.md](factorial-api-guide.md) | Factorial API: OAS convention, versioning, auth, pagination, quirks |
 | [testing-standards.md](testing-standards.md) | TDD, offline harness, `fcode test`, mandatory verification steps |
+| [branding.md](branding.md) | Factorial brand in client deliverables: palette, typography, FDE document conventions, Markdown → branded docx rendering |
 | [documentation-standards.md](documentation-standards.md) | Client doc set, build brief, app-level platform files (README / MARKETPLACE / CHANGELOG, canonical templates), EN/ES rule, docs-update procedure, project logs |
 | [spec-workflow.md](spec-workflow.md) | Development lifecycle: integration track and script track |
 

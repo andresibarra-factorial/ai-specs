@@ -1,0 +1,38 @@
+namespace,distinct_paths,operations,resources
+api_public,3,6,credentials; webhook_subscriptions
+approvals,2,2,materialized_approvals_flows
+ats,28,45,answers; application_phases; applications; candidate_sources; candidates; evaluation_forms; feedbacks; hiring_stages; job_postings; messages; questions; rejection_reasons
+attendance,22,33,break_configurations; edit_timesheet_requests; estimated_times; open_shifts; overtime_requests; reviews; shifts; worked_times
+banking,7,7,bank_accounts; card_payments; transactions
+bookkeepers_management,2,3,incidences
+companies,2,3,legal_entities
+compensations,2,2,concepts
+contracts,27,37,compensations; contract_templates; contract_version_histories; contract_version_meta_data; contract_versions; french_contract_types; german_contract_types; materialized_templates; portuguese_contract_types; reference_contracts; spanish_contract_types; spanish_education_levels; spanish_professional_categories; spanish_working_day_types; taxonomies
+custom_fields,8,14,fields; options; resource_fields; values
+custom_resources,6,8,; resources; schemas; values
+documents,7,12,documents; download_urls; folders
+employee_updates,12,12,absences; contract_changes; new_hires; personal_changes; summaries; terminations
+employees,7,8,employees
+expenses,10,10,expensables; expenses; mileages; per_diems
+finance,29,40,accounting_settings; accounts; budget_options; categories; contacts; cost_center_memberships; cost_centers; financial_documents; journal_entries; journal_lines; ledger_account_resources; tax_rates; tax_types
+holidays,2,2,company_holidays
+integrations,3,3,sync_run_outputs; syncable_items; syncable_sync_runs
+it_management,4,9,it_asset_models; it_assets
+job_catalog,6,6,levels; node_attributes; roles; tree_nodes
+locations,6,11,locations; work_areas
+marketplace,2,2,installation_settings; installations
+payroll,5,9,family_situations; policy_periods; supplements
+payroll_employees,2,5,identifiers
+payroll_integrations_base,2,4,codes
+performance,53,56,agreements; company_employee_score_scales; employee_score_scales; review_evaluation_answers; review_evaluation_scores; review_evaluations; review_owners; review_process_custom_templates; review_process_estimated_targets; review_process_targets; review_processes; review_questionnaire_by_strategies; review_visibility_settings; target_managers
+posts,7,16,comments; groups; posts
+procurement,6,6,purchase_orders; purchase_requests; types
+project_management,34,49,budget_strategies; expense_records; exportable_expenses; imputable_projects; planned_records; project_tasks; project_workers; projects; subprojects; time_records
+shift_management,4,6,shifts
+tasks,9,14,task_files; tasks
+teams,4,10,memberships; teams
+time_planning,6,8,planned_breaks; planning_versions
+time_settings,2,4,break_configurations
+timeoff,21,41,allowance_incidences; allowance_stats; allowances; blocked_periods; leave_types; leaves; policies; policy_assignments; policy_timelines
+trainings,22,34,categories; session_access_memberships; session_attendances; sessions; training_classes; training_memberships; trainings
+work_schedule,8,13,day_configurations; overlap_periods; schedules

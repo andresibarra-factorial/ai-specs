@@ -1,0 +1,551 @@
+namespace,resource,method,path,tags,summary,deprecated
+api_public,credentials,GET,/api/2026-07-01/resources/api_public/credentials,ApiPublic > Credential,Reads all Credentials,False
+api_public,webhook_subscriptions,DELETE,/api/2026-07-01/resources/api_public/webhook_subscriptions/{id},ApiPublic > WebhookSubscription,Deletes a Webhook subscription,False
+api_public,webhook_subscriptions,GET,/api/2026-07-01/resources/api_public/webhook_subscriptions,ApiPublic > WebhookSubscription,Reads all Webhook subscriptions,False
+api_public,webhook_subscriptions,GET,/api/2026-07-01/resources/api_public/webhook_subscriptions/{id},ApiPublic > WebhookSubscription,Reads a single Webhook subscription,False
+api_public,webhook_subscriptions,POST,/api/2026-07-01/resources/api_public/webhook_subscriptions,ApiPublic > WebhookSubscription,Creates a Webhook subscription,False
+api_public,webhook_subscriptions,PUT,/api/2026-07-01/resources/api_public/webhook_subscriptions/{id},ApiPublic > WebhookSubscription,Updates a Webhook subscription,False
+approvals,materialized_approvals_flows,POST,/api/2026-07-01/resources/approvals/materialized_approvals_flows/approve_resource,Approvals > MaterializedApprovalsFlow,Approves an approval flow by resource,False
+approvals,materialized_approvals_flows,POST,/api/2026-07-01/resources/approvals/materialized_approvals_flows/reject_resource,Approvals > MaterializedApprovalsFlow,Rejects an approval flow by resource,False
+ats,answers,GET,/api/2026-07-01/resources/ats/answers,Ats > Answer,Reads all Answers,False
+ats,answers,GET,/api/2026-07-01/resources/ats/answers/{id},Ats > Answer,Reads a single Answer,False
+ats,answers,POST,/api/2026-07-01/resources/ats/answers,Ats > Answer,Creates an Answer,False
+ats,application_phases,GET,/api/2026-07-01/resources/ats/application_phases,Ats > ApplicationPhase,Reads all Application phases,False
+ats,application_phases,GET,/api/2026-07-01/resources/ats/application_phases/{id},Ats > ApplicationPhase,Reads a single Application phase,False
+ats,applications,DELETE,/api/2026-07-01/resources/ats/applications/{id},Ats > Application,Deletes an Application,False
+ats,applications,GET,/api/2026-07-01/resources/ats/applications,Ats > Application,Reads all Applications,False
+ats,applications,GET,/api/2026-07-01/resources/ats/applications/{id},Ats > Application,Reads a single Application,False
+ats,applications,POST,/api/2026-07-01/resources/ats/applications,Ats > Application,Creates an Application,False
+ats,applications,POST,/api/2026-07-01/resources/ats/applications/apply,Ats > Application,Applies an Application,False
+ats,applications,POST,/api/2026-07-01/resources/ats/applications/move_to_phase,Ats > Application,Move to phases an Application,False
+ats,applications,PUT,/api/2026-07-01/resources/ats/applications/{id},Ats > Application,Updates an Application,False
+ats,candidate_sources,GET,/api/2026-07-01/resources/ats/candidate_sources,Ats > CandidateSource,Reads all Candidate sources,False
+ats,candidate_sources,GET,/api/2026-07-01/resources/ats/candidate_sources/{id},Ats > CandidateSource,Reads a single Candidate source,False
+ats,candidates,DELETE,/api/2026-07-01/resources/ats/candidates/{id},Ats > Candidate,Deletes a Candidate,False
+ats,candidates,GET,/api/2026-07-01/resources/ats/candidates,Ats > Candidate,Reads all Candidates,False
+ats,candidates,GET,/api/2026-07-01/resources/ats/candidates/{id},Ats > Candidate,Reads a single Candidate,False
+ats,candidates,POST,/api/2026-07-01/resources/ats/candidates,Ats > Candidate,Creates a Candidate,False
+ats,candidates,PUT,/api/2026-07-01/resources/ats/candidates/{id},Ats > Candidate,Updates a Candidate,False
+ats,evaluation_forms,GET,/api/2026-07-01/resources/ats/evaluation_forms,Ats > EvaluationForm,Reads all Evaluation forms,False
+ats,evaluation_forms,GET,/api/2026-07-01/resources/ats/evaluation_forms/{id},Ats > EvaluationForm,Reads a single Evaluation form,False
+ats,evaluation_forms,POST,/api/2026-07-01/resources/ats/evaluation_forms/save_as_template,Ats > EvaluationForm,Save as templates an Evaluation form,False
+ats,feedbacks,DELETE,/api/2026-07-01/resources/ats/feedbacks/{id},Ats > Feedback,Deletes a Feedback,False
+ats,feedbacks,GET,/api/2026-07-01/resources/ats/feedbacks,Ats > Feedback,Reads all Feedbacks,False
+ats,feedbacks,GET,/api/2026-07-01/resources/ats/feedbacks/{id},Ats > Feedback,Reads a single Feedback,False
+ats,feedbacks,POST,/api/2026-07-01/resources/ats/feedbacks,Ats > Feedback,Creates a Feedback,False
+ats,feedbacks,PUT,/api/2026-07-01/resources/ats/feedbacks/{id},Ats > Feedback,Updates a Feedback,False
+ats,hiring_stages,GET,/api/2026-07-01/resources/ats/hiring_stages,Ats > HiringStage,Reads all Hiring stages,False
+ats,hiring_stages,GET,/api/2026-07-01/resources/ats/hiring_stages/{id},Ats > HiringStage,Reads a single Hiring stage,False
+ats,job_postings,DELETE,/api/2026-07-01/resources/ats/job_postings/{id},Ats > JobPosting,Deletes a Job posting,False
+ats,job_postings,GET,/api/2026-07-01/resources/ats/job_postings,Ats > JobPosting,Reads all Job postings,False
+ats,job_postings,GET,/api/2026-07-01/resources/ats/job_postings/{id},Ats > JobPosting,Reads a single Job posting,False
+ats,job_postings,POST,/api/2026-07-01/resources/ats/job_postings,Ats > JobPosting,Creates a Job posting,False
+ats,job_postings,POST,/api/2026-07-01/resources/ats/job_postings/duplicate,Ats > JobPosting,Duplicates a Job posting,False
+ats,job_postings,PUT,/api/2026-07-01/resources/ats/job_postings/{id},Ats > JobPosting,Updates a Job posting,False
+ats,messages,GET,/api/2026-07-01/resources/ats/messages,Ats > Message,Reads all Messages,False
+ats,messages,GET,/api/2026-07-01/resources/ats/messages/{id},Ats > Message,Reads a single Message,False
+ats,messages,POST,/api/2026-07-01/resources/ats/messages,Ats > Message,Creates a Message,False
+ats,questions,DELETE,/api/2026-07-01/resources/ats/questions/{id},Ats > Question,Deletes a Question,False
+ats,questions,GET,/api/2026-07-01/resources/ats/questions,Ats > Question,Reads all Questions,False
+ats,questions,GET,/api/2026-07-01/resources/ats/questions/{id},Ats > Question,Reads a single Question,False
+ats,questions,POST,/api/2026-07-01/resources/ats/questions,Ats > Question,Creates a Question,False
+ats,questions,PUT,/api/2026-07-01/resources/ats/questions/{id},Ats > Question,Updates a Question,False
+ats,rejection_reasons,GET,/api/2026-07-01/resources/ats/rejection_reasons,Ats > RejectionReason,Reads all Rejection reasons,False
+ats,rejection_reasons,GET,/api/2026-07-01/resources/ats/rejection_reasons/{id},Ats > RejectionReason,Reads a single Rejection reason,False
+attendance,break_configurations,GET,/api/2026-07-01/resources/attendance/break_configurations,Attendance > BreakConfiguration,Reads all Break configurations,False
+attendance,break_configurations,GET,/api/2026-07-01/resources/attendance/break_configurations/{id},Attendance > BreakConfiguration,Reads a single Break configuration,False
+attendance,break_configurations,POST,/api/2026-07-01/resources/attendance/break_configurations,Attendance > BreakConfiguration,Creates a Break configuration,False
+attendance,break_configurations,PUT,/api/2026-07-01/resources/attendance/break_configurations/{id},Attendance > BreakConfiguration,Updates a Break configuration,False
+attendance,edit_timesheet_requests,DELETE,/api/2026-07-01/resources/attendance/edit_timesheet_requests/{id},Attendance > EditTimesheetRequest,Deletes an Edit timesheet request,False
+attendance,edit_timesheet_requests,GET,/api/2026-07-01/resources/attendance/edit_timesheet_requests,Attendance > EditTimesheetRequest,Reads all Edit timesheet requests,False
+attendance,edit_timesheet_requests,GET,/api/2026-07-01/resources/attendance/edit_timesheet_requests/{id},Attendance > EditTimesheetRequest,Reads all Edit timesheet requests,False
+attendance,edit_timesheet_requests,POST,/api/2026-07-01/resources/attendance/edit_timesheet_requests,Attendance > EditTimesheetRequest,Creates an Edit timesheet request,False
+attendance,edit_timesheet_requests,PUT,/api/2026-07-01/resources/attendance/edit_timesheet_requests/{id},Attendance > EditTimesheetRequest,Updates an Edit timesheet request,False
+attendance,estimated_times,GET,/api/2026-07-01/resources/attendance/estimated_times,Attendance > EstimatedTime,Reads all Estimated times,False
+attendance,open_shifts,GET,/api/2026-07-01/resources/attendance/open_shifts,Attendance > OpenShift,Reads all Open shifts,False
+attendance,overtime_requests,DELETE,/api/2026-07-01/resources/attendance/overtime_requests/{id},Attendance > OvertimeRequest,Deletes an Overtime request,False
+attendance,overtime_requests,GET,/api/2026-07-01/resources/attendance/overtime_requests,Attendance > OvertimeRequest,Reads all Overtime requests,False
+attendance,overtime_requests,GET,/api/2026-07-01/resources/attendance/overtime_requests/{id},Attendance > OvertimeRequest,Reads a single Overtime request,False
+attendance,overtime_requests,POST,/api/2026-07-01/resources/attendance/overtime_requests,Attendance > OvertimeRequest,Creates an Overtime request,False
+attendance,overtime_requests,POST,/api/2026-07-01/resources/attendance/overtime_requests/approve,Attendance > OvertimeRequest,Approves an Overtime request,False
+attendance,overtime_requests,POST,/api/2026-07-01/resources/attendance/overtime_requests/reject,Attendance > OvertimeRequest,Rejects an Overtime request,False
+attendance,overtime_requests,PUT,/api/2026-07-01/resources/attendance/overtime_requests/{id},Attendance > OvertimeRequest,Updates an Overtime request,False
+attendance,reviews,GET,/api/2026-07-01/resources/attendance/reviews,Attendance > Review,Reads all Reviews,False
+attendance,reviews,POST,/api/2026-07-01/resources/attendance/reviews/bulk_create,Attendance > Review,Bulk creates a Review,False
+attendance,reviews,POST,/api/2026-07-01/resources/attendance/reviews/bulk_destroy,Attendance > Review,Bulk destroys a Review,False
+attendance,shifts,DELETE,/api/2026-07-01/resources/attendance/shifts/{id},Attendance > Shift,Deletes a Shift,False
+attendance,shifts,GET,/api/2026-07-01/resources/attendance/shifts,Attendance > Shift,Reads all Shifts,False
+attendance,shifts,GET,/api/2026-07-01/resources/attendance/shifts/{id},Attendance > Shift,Reads a single Shift,False
+attendance,shifts,POST,/api/2026-07-01/resources/attendance/shifts,Attendance > Shift,Creates a shift,False
+attendance,shifts,POST,/api/2026-07-01/resources/attendance/shifts/autofill,Attendance > Shift,Autofills a Shift,False
+attendance,shifts,POST,/api/2026-07-01/resources/attendance/shifts/break_end,Attendance > Shift,Break ends a Shift,False
+attendance,shifts,POST,/api/2026-07-01/resources/attendance/shifts/break_start,Attendance > Shift,Break starts a Shift,False
+attendance,shifts,POST,/api/2026-07-01/resources/attendance/shifts/clock_in,Attendance > Shift,Clocks in a shift,False
+attendance,shifts,POST,/api/2026-07-01/resources/attendance/shifts/clock_out,Attendance > Shift,Clocks out a shift,False
+attendance,shifts,POST,/api/2026-07-01/resources/attendance/shifts/toggle_clock,Attendance > Shift,Clock in/out a shift,False
+attendance,shifts,PUT,/api/2026-07-01/resources/attendance/shifts/{id},Attendance > Shift,Updates a Shift,False
+attendance,worked_times,GET,/api/2026-07-01/resources/attendance/worked_times,Attendance > WorkedTime,Reads all Worked times,False
+banking,bank_accounts,GET,/api/2026-07-01/resources/banking/bank_accounts,Banking > BankAccount,Reads all Bank accounts,False
+banking,bank_accounts,GET,/api/2026-07-01/resources/banking/bank_accounts/{id},Banking > BankAccount,Reads a single Bank account,False
+banking,bank_accounts,POST,/api/2026-07-01/resources/banking/bank_accounts/create_manual,Banking > BankAccount,Create manuals a Bank account,False
+banking,card_payments,GET,/api/2026-07-01/resources/banking/card_payments,Banking > CardPayment,Reads all Card payments,False
+banking,card_payments,GET,/api/2026-07-01/resources/banking/card_payments/{id},Banking > CardPayment,Reads a single Card payment,False
+banking,transactions,GET,/api/2026-07-01/resources/banking/transactions,Banking > Transaction,Reads all Transactions,False
+banking,transactions,GET,/api/2026-07-01/resources/banking/transactions/{id},Banking > Transaction,Reads a single Transaction,False
+bookkeepers_management,incidences,GET,/api/2026-07-01/resources/bookkeepers_management/incidences,BookkeepersManagement > Incidence,Reads all Incidences,False
+bookkeepers_management,incidences,GET,/api/2026-07-01/resources/bookkeepers_management/incidences/{id},BookkeepersManagement > Incidence,Reads a single Incidence,False
+bookkeepers_management,incidences,PUT,/api/2026-07-01/resources/bookkeepers_management/incidences/{id},BookkeepersManagement > Incidence,Updates an Incidence,False
+companies,legal_entities,GET,/api/2026-07-01/resources/companies/legal_entities,Companies > LegalEntity,Reads all Legal entities,False
+companies,legal_entities,GET,/api/2026-07-01/resources/companies/legal_entities/{id},Companies > LegalEntity,Reads a single Legal entity,False
+companies,legal_entities,POST,/api/2026-07-01/resources/companies/legal_entities,Companies > LegalEntity,Creates a Legal entity,False
+compensations,concepts,GET,/api/2026-07-01/resources/compensations/concepts,Compensations > Concept,Reads all Concepts,False
+compensations,concepts,GET,/api/2026-07-01/resources/compensations/concepts/{id},Compensations > Concept,Reads a single Concept,False
+contracts,compensations,DELETE,/api/2026-07-01/resources/contracts/compensations/{id},Contracts > Compensation,Deletes a Compensation,False
+contracts,compensations,GET,/api/2026-07-01/resources/contracts/compensations,Contracts > Compensation,Reads all Compensations,False
+contracts,compensations,GET,/api/2026-07-01/resources/contracts/compensations/{id},Contracts > Compensation,Reads a single Compensation,False
+contracts,compensations,POST,/api/2026-07-01/resources/contracts/compensations,Contracts > Compensation,Creates a Compensation,False
+contracts,compensations,PUT,/api/2026-07-01/resources/contracts/compensations/{id},Contracts > Compensation,Updates a Compensation,False
+contracts,contract_templates,GET,/api/2026-07-01/resources/contracts/contract_templates,Contracts > ContractTemplate,Reads all Contract templates,False
+contracts,contract_templates,GET,/api/2026-07-01/resources/contracts/contract_templates/{id},Contracts > ContractTemplate,Reads a single Contract template,False
+contracts,contract_version_histories,GET,/api/2026-07-01/resources/contracts/contract_version_histories,Contracts > ContractVersionHistory,Reads all Contract version histories,False
+contracts,contract_version_histories,GET,/api/2026-07-01/resources/contracts/contract_version_histories/{id},Contracts > ContractVersionHistory,Reads a single Contract version history,False
+contracts,contract_version_meta_data,GET,/api/2026-07-01/resources/contracts/contract_version_meta_data,Contracts > ContractVersionMetaDatum,Reads all Contract version meta data,False
+contracts,contract_versions,DELETE,/api/2026-07-01/resources/contracts/contract_versions/{id},Contracts > ContractVersion,Deletes a Contract version,False
+contracts,contract_versions,GET,/api/2026-07-01/resources/contracts/contract_versions,Contracts > ContractVersion,Reads all Contract versions,False
+contracts,contract_versions,GET,/api/2026-07-01/resources/contracts/contract_versions/{id},Contracts > ContractVersion,Reads a single Contract version,False
+contracts,contract_versions,POST,/api/2026-07-01/resources/contracts/contract_versions,Contracts > ContractVersion,Creates a Contract version,False
+contracts,contract_versions,PUT,/api/2026-07-01/resources/contracts/contract_versions/{id},Contracts > ContractVersion,Updates a Contract version,False
+contracts,french_contract_types,GET,/api/2026-07-01/resources/contracts/french_contract_types,Contracts > FrenchContractType,Reads all French contract types,False
+contracts,french_contract_types,GET,/api/2026-07-01/resources/contracts/french_contract_types/{id},Contracts > FrenchContractType,Reads a single French contract type,False
+contracts,german_contract_types,GET,/api/2026-07-01/resources/contracts/german_contract_types,Contracts > GermanContractType,Reads all German contract types,False
+contracts,german_contract_types,GET,/api/2026-07-01/resources/contracts/german_contract_types/{id},Contracts > GermanContractType,Reads a single German contract type,False
+contracts,materialized_templates,GET,/api/2026-07-01/resources/contracts/materialized_templates,Contracts > MaterializedTemplate,Reads all Materialized templates,False
+contracts,portuguese_contract_types,GET,/api/2026-07-01/resources/contracts/portuguese_contract_types,Contracts > PortugueseContractType,Reads all Portuguese contract types,False
+contracts,portuguese_contract_types,GET,/api/2026-07-01/resources/contracts/portuguese_contract_types/{id},Contracts > PortugueseContractType,Reads a single Portuguese contract type,False
+contracts,reference_contracts,GET,/api/2026-07-01/resources/contracts/reference_contracts,Contracts > ReferenceContract,Reads all Reference contracts,False
+contracts,spanish_contract_types,GET,/api/2026-07-01/resources/contracts/spanish_contract_types,Contracts > SpanishContractType,Reads all Spanish contract types,False
+contracts,spanish_contract_types,GET,/api/2026-07-01/resources/contracts/spanish_contract_types/{id},Contracts > SpanishContractType,Reads a single Spanish contract type,False
+contracts,spanish_contract_types,POST,/api/2026-07-01/resources/contracts/spanish_contract_types,Contracts > SpanishContractType,Creates a Spanish contract type,False
+contracts,spanish_education_levels,GET,/api/2026-07-01/resources/contracts/spanish_education_levels,Contracts > SpanishEducationLevel,Reads all Spanish education levels,False
+contracts,spanish_education_levels,GET,/api/2026-07-01/resources/contracts/spanish_education_levels/{id},Contracts > SpanishEducationLevel,Reads a single Spanish education level,False
+contracts,spanish_education_levels,POST,/api/2026-07-01/resources/contracts/spanish_education_levels,Contracts > SpanishEducationLevel,Creates a Spanish education level,False
+contracts,spanish_professional_categories,GET,/api/2026-07-01/resources/contracts/spanish_professional_categories,Contracts > SpanishProfessionalCategory,Reads all Spanish professional categories,False
+contracts,spanish_professional_categories,GET,/api/2026-07-01/resources/contracts/spanish_professional_categories/{id},Contracts > SpanishProfessionalCategory,Reads a single Spanish professional category,False
+contracts,spanish_professional_categories,POST,/api/2026-07-01/resources/contracts/spanish_professional_categories,Contracts > SpanishProfessionalCategory,Creates a Spanish professional category,False
+contracts,spanish_working_day_types,GET,/api/2026-07-01/resources/contracts/spanish_working_day_types,Contracts > SpanishWorkingDayType,Reads all Spanish working day types,False
+contracts,spanish_working_day_types,GET,/api/2026-07-01/resources/contracts/spanish_working_day_types/{id},Contracts > SpanishWorkingDayType,Reads a single Spanish working day type,False
+contracts,spanish_working_day_types,POST,/api/2026-07-01/resources/contracts/spanish_working_day_types,Contracts > SpanishWorkingDayType,Creates a Spanish working day type,False
+contracts,taxonomies,GET,/api/2026-07-01/resources/contracts/taxonomies,Contracts > Taxonomy,Reads all Taxonomies,False
+contracts,taxonomies,GET,/api/2026-07-01/resources/contracts/taxonomies/{id},Contracts > Taxonomy,Reads a single Taxonomy,False
+custom_fields,fields,DELETE,/api/2026-07-01/resources/custom_fields/fields/{id},CustomFields > Field,Deletes a Field,False
+custom_fields,fields,GET,/api/2026-07-01/resources/custom_fields/fields,CustomFields > Field,Reads all Fields,False
+custom_fields,fields,GET,/api/2026-07-01/resources/custom_fields/fields/{id},CustomFields > Field,Reads a single Field,False
+custom_fields,fields,POST,/api/2026-07-01/resources/custom_fields/fields,CustomFields > Field,Creates a Field,False
+custom_fields,options,GET,/api/2026-07-01/resources/custom_fields/options,CustomFields > Option,Reads all Options,False
+custom_fields,options,GET,/api/2026-07-01/resources/custom_fields/options/{id},CustomFields > Option,Reads a single Option,False
+custom_fields,options,POST,/api/2026-07-01/resources/custom_fields/options,CustomFields > Option,Creates an Option,False
+custom_fields,resource_fields,GET,/api/2026-07-01/resources/custom_fields/resource_fields,CustomFields > ResourceField,Reads all Resource fields,False
+custom_fields,resource_fields,GET,/api/2026-07-01/resources/custom_fields/resource_fields/{id},CustomFields > ResourceField,Reads a single Resource field,False
+custom_fields,resource_fields,POST,/api/2026-07-01/resources/custom_fields/resource_fields,CustomFields > ResourceField,Creates a Resource field,False
+custom_fields,values,GET,/api/2026-07-01/resources/custom_fields/values,CustomFields > Value,Reads all Values,False
+custom_fields,values,GET,/api/2026-07-01/resources/custom_fields/values/{id},CustomFields > Value,Reads a single Value,False
+custom_fields,values,POST,/api/2026-07-01/resources/custom_fields/values,CustomFields > Value,Creates a Value,False
+custom_fields,values,PUT,/api/2026-07-01/resources/custom_fields/values/{id},CustomFields > Value,Updates a Value,False
+custom_resources,,GET,/api/2026-07-01/resources/custom_resources/resources/{id},CustomResources > Resource,Reads a single Resource,False
+custom_resources,resources,GET,/api/2026-07-01/resources/custom_resources/resources,CustomResources > Resource,Reads all Resources,False
+custom_resources,schemas,GET,/api/2026-07-01/resources/custom_resources/schemas,CustomResources > Schema,Reads all Schemas,False
+custom_resources,schemas,GET,/api/2026-07-01/resources/custom_resources/schemas/{id},CustomResources > Schema,Reads a single Schema,False
+custom_resources,schemas,POST,/api/2026-07-01/resources/custom_resources/schemas,CustomResources > Schema,Creates a Schema,False
+custom_resources,values,GET,/api/2026-07-01/resources/custom_resources/values,CustomResources > Value,Reads all Values,False
+custom_resources,values,GET,/api/2026-07-01/resources/custom_resources/values/{id},CustomResources > Value,Reads a single Value,False
+custom_resources,values,POST,/api/2026-07-01/resources/custom_resources/values,CustomResources > Value,Creates a Value,False
+documents,documents,DELETE,/api/2026-07-01/resources/documents/documents/{id},Documents > Document,Deletes a Document,False
+documents,documents,GET,/api/2026-07-01/resources/documents/documents,Documents > Document,Reads all Documents,False
+documents,documents,GET,/api/2026-07-01/resources/documents/documents/{id},Documents > Document,Reads a single Document,False
+documents,documents,POST,/api/2026-07-01/resources/documents/documents,Documents > Document,Creates a Document,False
+documents,documents,POST,/api/2026-07-01/resources/documents/documents/move_to_trash_bin,Documents > Document,Move to trash bins a Document,False
+documents,documents,POST,/api/2026-07-01/resources/documents/documents/restore_from_trash_bin,Documents > Document,Restore from trash bins a Document,False
+documents,documents,PUT,/api/2026-07-01/resources/documents/documents/{id},Documents > Document,Updates a Document,False
+documents,download_urls,POST,/api/2026-07-01/resources/documents/download_urls/bulk_create,Documents > DownloadUrl,Bulk creates a Download url,False
+documents,folders,GET,/api/2026-07-01/resources/documents/folders,Documents > Folder,Reads all Folders,False
+documents,folders,GET,/api/2026-07-01/resources/documents/folders/{id},Documents > Folder,Reads a single Folder,False
+documents,folders,POST,/api/2026-07-01/resources/documents/folders,Documents > Folder,Creates a Folder,False
+documents,folders,PUT,/api/2026-07-01/resources/documents/folders/{id},Documents > Folder,Updates a Folder,False
+employee_updates,absences,GET,/api/2026-07-01/resources/employee_updates/absences,EmployeeUpdates > Absence,Reads all Absences,False
+employee_updates,absences,GET,/api/2026-07-01/resources/employee_updates/absences/{id},EmployeeUpdates > Absence,Reads a single Absence,False
+employee_updates,contract_changes,GET,/api/2026-07-01/resources/employee_updates/contract_changes,EmployeeUpdates > ContractChange,Reads all Contract changes,False
+employee_updates,contract_changes,GET,/api/2026-07-01/resources/employee_updates/contract_changes/{id},EmployeeUpdates > ContractChange,Reads a single Contract change,False
+employee_updates,new_hires,GET,/api/2026-07-01/resources/employee_updates/new_hires,EmployeeUpdates > NewHire,Reads all New hires,False
+employee_updates,new_hires,GET,/api/2026-07-01/resources/employee_updates/new_hires/{id},EmployeeUpdates > NewHire,Reads a single New hire,False
+employee_updates,personal_changes,GET,/api/2026-07-01/resources/employee_updates/personal_changes,EmployeeUpdates > PersonalChange,Reads all Personal changes,False
+employee_updates,personal_changes,GET,/api/2026-07-01/resources/employee_updates/personal_changes/{id},EmployeeUpdates > PersonalChange,Reads a single Personal change,False
+employee_updates,summaries,GET,/api/2026-07-01/resources/employee_updates/summaries,EmployeeUpdates > Summary,Reads all Summaries,False
+employee_updates,summaries,GET,/api/2026-07-01/resources/employee_updates/summaries/{id},EmployeeUpdates > Summary,Reads a single Summary,False
+employee_updates,terminations,GET,/api/2026-07-01/resources/employee_updates/terminations,EmployeeUpdates > Termination,Reads all Terminations,False
+employee_updates,terminations,GET,/api/2026-07-01/resources/employee_updates/terminations/{id},EmployeeUpdates > Termination,Reads a single Termination,False
+employees,employees,GET,/api/2026-07-01/resources/employees/employees,Employees > Employee,Reads all Employees,False
+employees,employees,GET,/api/2026-07-01/resources/employees/employees/{id},Employees > Employee,Reads a single Employee,False
+employees,employees,POST,/api/2026-07-01/resources/employees/employees/create_with_contract,Employees > Employee,Create with contracts an Employee,False
+employees,employees,POST,/api/2026-07-01/resources/employees/employees/invite,Employees > Employee,Invites an Employee,False
+employees,employees,POST,/api/2026-07-01/resources/employees/employees/set_regular_access_start_date,Employees > Employee,Set regular access start dates an Employee,False
+employees,employees,POST,/api/2026-07-01/resources/employees/employees/terminate,Employees > Employee,Terminates an Employee,False
+employees,employees,POST,/api/2026-07-01/resources/employees/employees/unterminate,Employees > Employee,Unterminates an Employee,False
+employees,employees,PUT,/api/2026-07-01/resources/employees/employees/{id},Employees > Employee,Updates an Employee,False
+expenses,expensables,GET,/api/2026-07-01/resources/expenses/expensables,Expenses > Expensable,Reads all Expensables,False
+expenses,expensables,GET,/api/2026-07-01/resources/expenses/expensables/{id},Expenses > Expensable,Reads a single Expensable,False
+expenses,expensables,POST,/api/2026-07-01/resources/expenses/expensables/bulk_set_to_paid,Expenses > Expensable,Bulk set to paids an Expensable,False
+expenses,expensables,POST,/api/2026-07-01/resources/expenses/expensables/update_reimbursable_amount,Expenses > Expensable,Update reimbursable amount on an expensable,False
+expenses,expenses,GET,/api/2026-07-01/resources/expenses/expenses,Expenses > Expense,Reads all Expenses,False
+expenses,expenses,GET,/api/2026-07-01/resources/expenses/expenses/{id},Expenses > Expense,Reads a single Expense,False
+expenses,mileages,GET,/api/2026-07-01/resources/expenses/mileages,Expenses > Mileage,Reads all Mileages,False
+expenses,mileages,GET,/api/2026-07-01/resources/expenses/mileages/{id},Expenses > Mileage,Reads a single Mileage,False
+expenses,per_diems,GET,/api/2026-07-01/resources/expenses/per_diems,Expenses > PerDiem,Reads all Per diems,False
+expenses,per_diems,GET,/api/2026-07-01/resources/expenses/per_diems/{id},Expenses > PerDiem,Reads a single Per diem,False
+finance,accounting_settings,GET,/api/2026-07-01/resources/finance/accounting_settings,Finance > AccountingSetting,Reads all Accounting settings,False
+finance,accounting_settings,GET,/api/2026-07-01/resources/finance/accounting_settings/{id},Finance > AccountingSetting,Reads a single Accounting setting,False
+finance,accounting_settings,POST,/api/2026-07-01/resources/finance/accounting_settings/upsert,Finance > AccountingSetting,Upserts an Accounting setting,False
+finance,accounts,GET,/api/2026-07-01/resources/finance/accounts,Finance > Account,Reads all Accounts,False
+finance,accounts,GET,/api/2026-07-01/resources/finance/accounts/{id},Finance > Account,Reads a single Account,False
+finance,accounts,POST,/api/2026-07-01/resources/finance/accounts,Finance > Account,Creates an Account,False
+finance,accounts,PUT,/api/2026-07-01/resources/finance/accounts/{id},Finance > Account,Updates an Account,False
+finance,budget_options,GET,/api/2026-07-01/resources/finance/budget_options,Finance > BudgetOption,Reads all Budget options,False
+finance,budget_options,GET,/api/2026-07-01/resources/finance/budget_options/{id},Finance > BudgetOption,Reads a single Budget option,False
+finance,categories,GET,/api/2026-07-01/resources/finance/categories,Finance > Category,Reads all Categories,False
+finance,categories,GET,/api/2026-07-01/resources/finance/categories/{id},Finance > Category,Reads a single Category,False
+finance,contacts,GET,/api/2026-07-01/resources/finance/contacts,Finance > Contact,Reads all Contacts,False
+finance,contacts,GET,/api/2026-07-01/resources/finance/contacts/{id},Finance > Contact,Reads a single Contact,False
+finance,contacts,POST,/api/2026-07-01/resources/finance/contacts,Finance > Contact,Creates a Contact,False
+finance,contacts,PUT,/api/2026-07-01/resources/finance/contacts/{id},Finance > Contact,Updates a Contact,False
+finance,cost_center_memberships,GET,/api/2026-07-01/resources/finance/cost_center_memberships,Finance > CostCenterMembership,Reads all Cost center memberships,False
+finance,cost_center_memberships,POST,/api/2026-07-01/resources/finance/cost_center_memberships/bulk_create_update,Finance > CostCenterMembership,Bulk create updates a Cost center membership,False
+finance,cost_centers,DELETE,/api/2026-07-01/resources/finance/cost_centers/{id},Finance > CostCenter,Deletes a Cost center,False
+finance,cost_centers,GET,/api/2026-07-01/resources/finance/cost_centers,Finance > CostCenter,Reads all Cost centers,False
+finance,cost_centers,GET,/api/2026-07-01/resources/finance/cost_centers/{id},Finance > CostCenter,Reads a single Cost center,False
+finance,cost_centers,POST,/api/2026-07-01/resources/finance/cost_centers,Finance > CostCenter,Creates a Cost center,False
+finance,cost_centers,POST,/api/2026-07-01/resources/finance/cost_centers/edit,Finance > CostCenter,Edits a Cost center,False
+finance,financial_documents,GET,/api/2026-07-01/resources/finance/financial_documents,Finance > FinancialDocument,Reads all Financial documents,False
+finance,financial_documents,GET,/api/2026-07-01/resources/finance/financial_documents/{id},Finance > FinancialDocument,Reads a single Financial document,False
+finance,journal_entries,GET,/api/2026-07-01/resources/finance/journal_entries,Finance > JournalEntry,Reads all Journal entries,False
+finance,journal_entries,GET,/api/2026-07-01/resources/finance/journal_entries/{id},Finance > JournalEntry,Reads a single Journal entry,False
+finance,journal_entries,POST,/api/2026-07-01/resources/finance/journal_entries,Finance > JournalEntry,Creates a Journal entry,False
+finance,journal_lines,GET,/api/2026-07-01/resources/finance/journal_lines,Finance > JournalLine,Reads all Journal lines,False
+finance,journal_lines,GET,/api/2026-07-01/resources/finance/journal_lines/{id},Finance > JournalLine,Reads a single Journal line,False
+finance,ledger_account_resources,GET,/api/2026-07-01/resources/finance/ledger_account_resources,Finance > LedgerAccountResource,Reads all Ledger account resources,False
+finance,ledger_account_resources,GET,/api/2026-07-01/resources/finance/ledger_account_resources/{id},Finance > LedgerAccountResource,Reads a single Ledger account resource,False
+finance,ledger_account_resources,POST,/api/2026-07-01/resources/finance/ledger_account_resources/upsert,Finance > LedgerAccountResource,Upserts a Ledger account resource,False
+finance,tax_rates,GET,/api/2026-07-01/resources/finance/tax_rates,Finance > TaxRate,Reads all Tax rates,False
+finance,tax_rates,GET,/api/2026-07-01/resources/finance/tax_rates/{id},Finance > TaxRate,Reads a single Tax rate,False
+finance,tax_rates,POST,/api/2026-07-01/resources/finance/tax_rates,Finance > TaxRate,Creates a Tax rate,False
+finance,tax_rates,PUT,/api/2026-07-01/resources/finance/tax_rates/{id},Finance > TaxRate,Updates a Tax rate,False
+finance,tax_types,GET,/api/2026-07-01/resources/finance/tax_types,Finance > TaxType,Reads all Tax types,False
+finance,tax_types,GET,/api/2026-07-01/resources/finance/tax_types/{id},Finance > TaxType,Reads a single Tax type,False
+finance,tax_types,POST,/api/2026-07-01/resources/finance/tax_types,Finance > TaxType,Creates a Tax type,False
+finance,tax_types,PUT,/api/2026-07-01/resources/finance/tax_types/{id},Finance > TaxType,Updates a Tax type,False
+holidays,company_holidays,GET,/api/2026-07-01/resources/holidays/company_holidays,Holidays > CompanyHoliday,Reads all Company holidays,False
+holidays,company_holidays,GET,/api/2026-07-01/resources/holidays/company_holidays/{id},Holidays > CompanyHoliday,Reads a single Company holiday,False
+integrations,sync_run_outputs,POST,/api/2026-07-01/resources/integrations/sync_run_outputs,Integrations > SyncRunOutput,Creates a Sync run output,False
+integrations,syncable_items,GET,/api/2026-07-01/resources/integrations/syncable_items,Integrations > SyncableItem,Reads all Syncable items,False
+integrations,syncable_sync_runs,PUT,/api/2026-07-01/resources/integrations/syncable_sync_runs/{id},Integrations > SyncableSyncRun,Updates a Syncable sync run,False
+it_management,it_asset_models,GET,/api/2026-07-01/resources/it_management/it_asset_models,ItManagement > ItAssetModel,Reads all It asset models,False
+it_management,it_asset_models,GET,/api/2026-07-01/resources/it_management/it_asset_models/{id},ItManagement > ItAssetModel,Reads a single It asset model,False
+it_management,it_asset_models,POST,/api/2026-07-01/resources/it_management/it_asset_models,ItManagement > ItAssetModel,Creates an It asset model,False
+it_management,it_asset_models,PUT,/api/2026-07-01/resources/it_management/it_asset_models/{id},ItManagement > ItAssetModel,Updates an It asset model,False
+it_management,it_assets,DELETE,/api/2026-07-01/resources/it_management/it_assets/{id},ItManagement > ItAsset,Deletes an It asset,False
+it_management,it_assets,GET,/api/2026-07-01/resources/it_management/it_assets,ItManagement > ItAsset,Reads all It assets,False
+it_management,it_assets,GET,/api/2026-07-01/resources/it_management/it_assets/{id},ItManagement > ItAsset,Reads a single It asset,False
+it_management,it_assets,POST,/api/2026-07-01/resources/it_management/it_assets,ItManagement > ItAsset,Creates an It asset,False
+it_management,it_assets,PUT,/api/2026-07-01/resources/it_management/it_assets/{id},ItManagement > ItAsset,Updates an It asset,False
+job_catalog,levels,GET,/api/2026-07-01/resources/job_catalog/levels,JobCatalog > Level,Reads all Levels,False
+job_catalog,levels,GET,/api/2026-07-01/resources/job_catalog/levels/{id},JobCatalog > Level,Reads a single Level,False
+job_catalog,node_attributes,GET,/api/2026-07-01/resources/job_catalog/node_attributes,JobCatalog > NodeAttribute,Reads all Node attributes,False
+job_catalog,roles,GET,/api/2026-07-01/resources/job_catalog/roles,JobCatalog > Role,Reads all Roles,False
+job_catalog,roles,GET,/api/2026-07-01/resources/job_catalog/roles/{id},JobCatalog > Role,Reads a single Role,False
+job_catalog,tree_nodes,GET,/api/2026-07-01/resources/job_catalog/tree_nodes,JobCatalog > TreeNode,Reads all Tree nodes,False
+locations,locations,DELETE,/api/2026-07-01/resources/locations/locations/{id},Locations > Location,Deletes a Location,False
+locations,locations,GET,/api/2026-07-01/resources/locations/locations,Locations > Location,Reads all Locations,False
+locations,locations,GET,/api/2026-07-01/resources/locations/locations/{id},Locations > Location,Reads a single Location,False
+locations,locations,POST,/api/2026-07-01/resources/locations/locations,Locations > Location,Creates a Location,False
+locations,locations,PUT,/api/2026-07-01/resources/locations/locations/{id},Locations > Location,Updates a Location,False
+locations,work_areas,GET,/api/2026-07-01/resources/locations/work_areas,Locations > WorkArea,Reads all Work areas,False
+locations,work_areas,GET,/api/2026-07-01/resources/locations/work_areas/{id},Locations > WorkArea,Reads a single Work area,False
+locations,work_areas,POST,/api/2026-07-01/resources/locations/work_areas,Locations > WorkArea,Creates a Work area,False
+locations,work_areas,POST,/api/2026-07-01/resources/locations/work_areas/archive,Locations > WorkArea,Archives a Work area,False
+locations,work_areas,POST,/api/2026-07-01/resources/locations/work_areas/unarchive,Locations > WorkArea,Unarchives a Work area,False
+locations,work_areas,PUT,/api/2026-07-01/resources/locations/work_areas/{id},Locations > WorkArea,Updates a Work area,False
+marketplace,installation_settings,GET,/api/2026-07-01/resources/marketplace/installation_settings,Marketplace > InstallationSetting,Reads all Installation settings,False
+marketplace,installations,POST,/api/2026-07-01/resources/marketplace/installations,Marketplace > Installation,Creates an Installation,False
+payroll,family_situations,GET,/api/2026-07-01/resources/payroll/family_situations,Payroll > FamilySituation,Reads all Family situations,False
+payroll,family_situations,POST,/api/2026-07-01/resources/payroll/family_situations,Payroll > FamilySituation,Creates a Family situation,False
+payroll,family_situations,PUT,/api/2026-07-01/resources/payroll/family_situations/{id},Payroll > FamilySituation,Updates a Family situation,False
+payroll,policy_periods,POST,/api/2026-07-01/resources/payroll/policy_periods/change_status,Payroll > PolicyPeriod,Change statuses a Policy period,False
+payroll,supplements,DELETE,/api/2026-07-01/resources/payroll/supplements/{id},Payroll > Supplement,Deletes a Supplement,False
+payroll,supplements,GET,/api/2026-07-01/resources/payroll/supplements,Payroll > Supplement,Reads all Supplements,False
+payroll,supplements,GET,/api/2026-07-01/resources/payroll/supplements/{id},Payroll > Supplement,Reads a single Supplement,False
+payroll,supplements,POST,/api/2026-07-01/resources/payroll/supplements,Payroll > Supplement,Creates a Supplement,False
+payroll,supplements,PUT,/api/2026-07-01/resources/payroll/supplements/{id},Payroll > Supplement,Updates a Supplement,False
+payroll_employees,identifiers,DELETE,/api/2026-07-01/resources/payroll_employees/identifiers/{id},PayrollEmployees > Identifier,Deletes an Identifier,False
+payroll_employees,identifiers,GET,/api/2026-07-01/resources/payroll_employees/identifiers,PayrollEmployees > Identifier,Reads all Identifiers,False
+payroll_employees,identifiers,GET,/api/2026-07-01/resources/payroll_employees/identifiers/{id},PayrollEmployees > Identifier,Reads a single Identifier,False
+payroll_employees,identifiers,POST,/api/2026-07-01/resources/payroll_employees/identifiers,PayrollEmployees > Identifier,Creates an Identifier,False
+payroll_employees,identifiers,PUT,/api/2026-07-01/resources/payroll_employees/identifiers/{id},PayrollEmployees > Identifier,Updates an Identifier,False
+payroll_integrations_base,codes,DELETE,/api/2026-07-01/resources/payroll_integrations_base/codes/{id},PayrollIntegrationsBase > Code,Deletes a Code,False
+payroll_integrations_base,codes,GET,/api/2026-07-01/resources/payroll_integrations_base/codes,PayrollIntegrationsBase > Code,Reads all Codes,False
+payroll_integrations_base,codes,POST,/api/2026-07-01/resources/payroll_integrations_base/codes,PayrollIntegrationsBase > Code,Creates a Code,False
+payroll_integrations_base,codes,PUT,/api/2026-07-01/resources/payroll_integrations_base/codes/{id},PayrollIntegrationsBase > Code,Updates a Code,False
+performance,agreements,GET,/api/2026-07-01/resources/performance/agreements,Performance > Agreement,Reads all Agreements,False
+performance,agreements,GET,/api/2026-07-01/resources/performance/agreements/{id},Performance > Agreement,Reads a single Agreement,False
+performance,agreements,POST,/api/2026-07-01/resources/performance/agreements/bulk_initiate,Performance > Agreement,Bulk initiates an Agreement,False
+performance,agreements,POST,/api/2026-07-01/resources/performance/agreements/initiate,Performance > Agreement,Initiates an Agreement,False
+performance,company_employee_score_scales,GET,/api/2026-07-01/resources/performance/company_employee_score_scales,Performance > CompanyEmployeeScoreScale,Reads all Company employee score scales,False
+performance,company_employee_score_scales,GET,/api/2026-07-01/resources/performance/company_employee_score_scales/{id},Performance > CompanyEmployeeScoreScale,Reads a single Company employee score scale,False
+performance,company_employee_score_scales,POST,/api/2026-07-01/resources/performance/company_employee_score_scales/set,Performance > CompanyEmployeeScoreScale,Sets a Company employee score scale,False
+performance,employee_score_scales,GET,/api/2026-07-01/resources/performance/employee_score_scales,Performance > EmployeeScoreScale,Reads all Employee score scales,False
+performance,employee_score_scales,GET,/api/2026-07-01/resources/performance/employee_score_scales/{id},Performance > EmployeeScoreScale,Reads a single Employee score scale,False
+performance,review_evaluation_answers,GET,/api/2026-07-01/resources/performance/review_evaluation_answers,Performance > ReviewEvaluationAnswer,Reads all Review evaluation answers,False
+performance,review_evaluation_scores,GET,/api/2026-07-01/resources/performance/review_evaluation_scores,Performance > ReviewEvaluationScore,Reads all Review evaluation scores,False
+performance,review_evaluation_scores,GET,/api/2026-07-01/resources/performance/review_evaluation_scores/{id},Performance > ReviewEvaluationScore,Reads a single Review evaluation score,False
+performance,review_evaluations,GET,/api/2026-07-01/resources/performance/review_evaluations,Performance > ReviewEvaluation,Reads all Review evaluations,False
+performance,review_evaluations,GET,/api/2026-07-01/resources/performance/review_evaluations/{id},Performance > ReviewEvaluation,Reads a single Review evaluation,False
+performance,review_evaluations,POST,/api/2026-07-01/resources/performance/review_evaluations/replace_reviewer,Performance > ReviewEvaluation,Replace reviewers a Review evaluation,False
+performance,review_owners,DELETE,/api/2026-07-01/resources/performance/review_owners/{id},Performance > ReviewOwner,Deletes a Review owner,False
+performance,review_owners,GET,/api/2026-07-01/resources/performance/review_owners,Performance > ReviewOwner,Reads all Review owners,False
+performance,review_owners,POST,/api/2026-07-01/resources/performance/review_owners/bulk_create,Performance > ReviewOwner,Bulk creates a Review owner,False
+performance,review_process_custom_templates,GET,/api/2026-07-01/resources/performance/review_process_custom_templates,Performance > ReviewProcessCustomTemplate,Reads all Review process custom templates,False
+performance,review_process_custom_templates,GET,/api/2026-07-01/resources/performance/review_process_custom_templates/{id},Performance > ReviewProcessCustomTemplate,Reads a single Review process custom template,False
+performance,review_process_estimated_targets,GET,/api/2026-07-01/resources/performance/review_process_estimated_targets,Performance > ReviewProcessEstimatedTarget,Reads all Review process estimated targets,False
+performance,review_process_targets,DELETE,/api/2026-07-01/resources/performance/review_process_targets/{id},Performance > ReviewProcessTarget,Deletes a Review process target,False
+performance,review_process_targets,GET,/api/2026-07-01/resources/performance/review_process_targets,Performance > ReviewProcessTarget,Reads all Review process targets,False
+performance,review_process_targets,GET,/api/2026-07-01/resources/performance/review_process_targets/{id},Performance > ReviewProcessTarget,Reads a single Review process target,False
+performance,review_process_targets,POST,/api/2026-07-01/resources/performance/review_process_targets/add_peers,Performance > ReviewProcessTarget,Add peers a Review process target,False
+performance,review_process_targets,POST,/api/2026-07-01/resources/performance/review_process_targets/bulk_create,Performance > ReviewProcessTarget,Bulk creates a Review process target,False
+performance,review_process_targets,POST,/api/2026-07-01/resources/performance/review_process_targets/remove_peer_evaluations,Performance > ReviewProcessTarget,Remove peer evaluations a Review process target,False
+performance,review_processes,DELETE,/api/2026-07-01/resources/performance/review_processes/{id},Performance > ReviewProcess,Deletes a Review process,False
+performance,review_processes,GET,/api/2026-07-01/resources/performance/review_processes,Performance > ReviewProcess,Reads all Review processes,False
+performance,review_processes,GET,/api/2026-07-01/resources/performance/review_processes/{id},Performance > ReviewProcess,Reads a single Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes,Performance > ReviewProcess,Creates a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/create_from_template,Performance > ReviewProcess,Create from templates a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/duplicate,Performance > ReviewProcess,Duplicates a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/remind_in_bulk,Performance > ReviewProcess,Remind in bulks a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/remove_schedule,Performance > ReviewProcess,Remove schedules a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/reopen,Performance > ReviewProcess,Reopens a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/schedule,Performance > ReviewProcess,Schedules a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/start,Performance > ReviewProcess,Starts a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/stop,Performance > ReviewProcess,Stops a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/toggle_archive,Performance > ReviewProcess,Toggle archives a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_agreements_configuration,Performance > ReviewProcess,Update agreements configurations a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_basic_info,Performance > ReviewProcess,Update basic infos a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_competencies_assessments_configuration,Performance > ReviewProcess,Update competencies assessments configurations a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_deadline,Performance > ReviewProcess,Update deadlines a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_employee_score_configuration,Performance > ReviewProcess,Update employee score configurations a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_reviewer_strategies,Performance > ReviewProcess,Update reviewer strategies a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_schedule,Performance > ReviewProcess,Update schedules a Review process,False
+performance,review_processes,POST,/api/2026-07-01/resources/performance/review_processes/update_target_strategy,Performance > ReviewProcess,Update target strategies a Review process,False
+performance,review_questionnaire_by_strategies,GET,/api/2026-07-01/resources/performance/review_questionnaire_by_strategies,Performance > ReviewQuestionnaireByStrategy,Reads all Review questionnaire by strategies,False
+performance,review_questionnaire_by_strategies,GET,/api/2026-07-01/resources/performance/review_questionnaire_by_strategies/{id},Performance > ReviewQuestionnaireByStrategy,Reads a single Review questionnaire by strategy,False
+performance,review_questionnaire_by_strategies,POST,/api/2026-07-01/resources/performance/review_questionnaire_by_strategies/update_default_rating_scale,Performance > ReviewQuestionnaireByStrategy,Update default rating scales a Review questionnaire by strategy,False
+performance,review_questionnaire_by_strategies,POST,/api/2026-07-01/resources/performance/review_questionnaire_by_strategies/update_questionnaire_for_strategy,Performance > ReviewQuestionnaireByStrategy,Update questionnaire for strategies a Review questionnaire by strategy,False
+performance,review_visibility_settings,GET,/api/2026-07-01/resources/performance/review_visibility_settings,Performance > ReviewVisibilitySetting,Reads all Review visibility settings,False
+performance,review_visibility_settings,PUT,/api/2026-07-01/resources/performance/review_visibility_settings/{id},Performance > ReviewVisibilitySetting,Updates a Review visibility setting,False
+performance,target_managers,GET,/api/2026-07-01/resources/performance/target_managers,Performance > TargetManager,Reads all Target managers,False
+performance,target_managers,GET,/api/2026-07-01/resources/performance/target_managers/{id},Performance > TargetManager,Reads a single Target manager,False
+posts,comments,DELETE,/api/2026-07-01/resources/posts/comments/{id},Posts > Comment,Deletes a Comment,False
+posts,comments,GET,/api/2026-07-01/resources/posts/comments,Posts > Comment,Reads all Comments,False
+posts,comments,GET,/api/2026-07-01/resources/posts/comments/{id},Posts > Comment,Reads a single Comment,False
+posts,comments,POST,/api/2026-07-01/resources/posts/comments,Posts > Comment,Creates a Comment,False
+posts,comments,PUT,/api/2026-07-01/resources/posts/comments/{id},Posts > Comment,Updates a Comment,False
+posts,groups,DELETE,/api/2026-07-01/resources/posts/groups/{id},Posts > Group,Deletes a Group,False
+posts,groups,GET,/api/2026-07-01/resources/posts/groups,Posts > Group,Reads all Groups,False
+posts,groups,GET,/api/2026-07-01/resources/posts/groups/{id},Posts > Group,Reads a single Group,False
+posts,groups,POST,/api/2026-07-01/resources/posts/groups,Posts > Group,Creates a Group,False
+posts,groups,POST,/api/2026-07-01/resources/posts/groups/archive,Posts > Group,Archives a Group,False
+posts,groups,PUT,/api/2026-07-01/resources/posts/groups/{id},Posts > Group,Updates a Group,False
+posts,posts,DELETE,/api/2026-07-01/resources/posts/posts/{id},Posts > Post,Deletes a Post,False
+posts,posts,GET,/api/2026-07-01/resources/posts/posts,Posts > Post,Reads all Posts,False
+posts,posts,GET,/api/2026-07-01/resources/posts/posts/{id},Posts > Post,Reads a single Post,False
+posts,posts,POST,/api/2026-07-01/resources/posts/posts,Posts > Post,Creates a Post,False
+posts,posts,PUT,/api/2026-07-01/resources/posts/posts/{id},Posts > Post,Updates a Post,False
+procurement,purchase_orders,GET,/api/2026-07-01/resources/procurement/purchase_orders,Procurement > PurchaseOrder,Reads all Purchase orders,False
+procurement,purchase_orders,GET,/api/2026-07-01/resources/procurement/purchase_orders/{id},Procurement > PurchaseOrder,Reads a single Purchase order,False
+procurement,purchase_requests,GET,/api/2026-07-01/resources/procurement/purchase_requests,Procurement > PurchaseRequest,Reads all Purchase requests,False
+procurement,purchase_requests,GET,/api/2026-07-01/resources/procurement/purchase_requests/{id},Procurement > PurchaseRequest,Reads a single Purchase request,False
+procurement,types,GET,/api/2026-07-01/resources/procurement/types,Procurement > Type,Reads all Types,False
+procurement,types,GET,/api/2026-07-01/resources/procurement/types/{id},Procurement > Type,Reads a single Type,False
+project_management,budget_strategies,DELETE,/api/2026-07-01/resources/project_management/budget_strategies/{id},ProjectManagement > BudgetStrategy,Deletes a Budget strategy,False
+project_management,budget_strategies,GET,/api/2026-07-01/resources/project_management/budget_strategies,ProjectManagement > BudgetStrategy,Reads all Budget strategies,False
+project_management,budget_strategies,GET,/api/2026-07-01/resources/project_management/budget_strategies/{id},ProjectManagement > BudgetStrategy,Reads a single Budget strategy,False
+project_management,budget_strategies,POST,/api/2026-07-01/resources/project_management/budget_strategies,ProjectManagement > BudgetStrategy,Creates a Budget strategy,False
+project_management,budget_strategies,PUT,/api/2026-07-01/resources/project_management/budget_strategies/{id},ProjectManagement > BudgetStrategy,Updates a Budget strategy,False
+project_management,expense_records,GET,/api/2026-07-01/resources/project_management/expense_records,ProjectManagement > ExpenseRecord,Reads all Expense records,False
+project_management,expense_records,GET,/api/2026-07-01/resources/project_management/expense_records/{id},ProjectManagement > ExpenseRecord,Reads a single Expense record,False
+project_management,exportable_expenses,GET,/api/2026-07-01/resources/project_management/exportable_expenses,ProjectManagement > ExportableExpense,Reads all Exportable expenses,False
+project_management,imputable_projects,GET,/api/2026-07-01/resources/project_management/imputable_projects,ProjectManagement > ImputableProject,Reads all Imputable projects,False
+project_management,imputable_projects,GET,/api/2026-07-01/resources/project_management/imputable_projects/{id},ProjectManagement > ImputableProject,Reads a single Imputable project,False
+project_management,planned_records,DELETE,/api/2026-07-01/resources/project_management/planned_records/{id},ProjectManagement > PlannedRecord,Deletes a Planned record,False
+project_management,planned_records,GET,/api/2026-07-01/resources/project_management/planned_records,ProjectManagement > PlannedRecord,Reads all Planned records,False
+project_management,planned_records,GET,/api/2026-07-01/resources/project_management/planned_records/{id},ProjectManagement > PlannedRecord,Reads a single Planned record,False
+project_management,planned_records,POST,/api/2026-07-01/resources/project_management/planned_records/bulk_create,ProjectManagement > PlannedRecord,Bulk creates a Planned record,False
+project_management,planned_records,PUT,/api/2026-07-01/resources/project_management/planned_records/{id},ProjectManagement > PlannedRecord,Updates a Planned record,False
+project_management,project_tasks,GET,/api/2026-07-01/resources/project_management/project_tasks,ProjectManagement > ProjectTask,Reads all Project tasks,False
+project_management,project_tasks,GET,/api/2026-07-01/resources/project_management/project_tasks/{id},ProjectManagement > ProjectTask,Reads a single Project task,False
+project_management,project_tasks,POST,/api/2026-07-01/resources/project_management/project_tasks,ProjectManagement > ProjectTask,Creates a Project task,False
+project_management,project_tasks,POST,/api/2026-07-01/resources/project_management/project_tasks/bulk_destroy,ProjectManagement > ProjectTask,Bulk destroys a Project task,False
+project_management,project_tasks,POST,/api/2026-07-01/resources/project_management/project_tasks/bulk_duplicate,ProjectManagement > ProjectTask,Bulk duplicates a Project task,False
+project_management,project_tasks,PUT,/api/2026-07-01/resources/project_management/project_tasks/{id},ProjectManagement > ProjectTask,Updates a Project task,False
+project_management,project_workers,GET,/api/2026-07-01/resources/project_management/project_workers,ProjectManagement > ProjectWorker,Reads all Project workers,False
+project_management,project_workers,GET,/api/2026-07-01/resources/project_management/project_workers/{id},ProjectManagement > ProjectWorker,Reads a single Project worker,False
+project_management,project_workers,POST,/api/2026-07-01/resources/project_management/project_workers,ProjectManagement > ProjectWorker,Creates a Project worker,False
+project_management,project_workers,POST,/api/2026-07-01/resources/project_management/project_workers/bulk_assign,ProjectManagement > ProjectWorker,Bulk assigns a Project worker,False
+project_management,project_workers,POST,/api/2026-07-01/resources/project_management/project_workers/bulk_create,ProjectManagement > ProjectWorker,Bulk creates a Project worker,False
+project_management,project_workers,POST,/api/2026-07-01/resources/project_management/project_workers/unassign,ProjectManagement > ProjectWorker,Unassigns a Project worker,False
+project_management,projects,GET,/api/2026-07-01/resources/project_management/projects,ProjectManagement > Project,Reads all Projects,False
+project_management,projects,GET,/api/2026-07-01/resources/project_management/projects/{id},ProjectManagement > Project,Reads a single Project,False
+project_management,projects,POST,/api/2026-07-01/resources/project_management/projects,ProjectManagement > Project,Creates a Project,False
+project_management,projects,POST,/api/2026-07-01/resources/project_management/projects/activate,ProjectManagement > Project,Activates a Project,False
+project_management,projects,POST,/api/2026-07-01/resources/project_management/projects/change_assignment,ProjectManagement > Project,Change assignments a Project,False
+project_management,projects,POST,/api/2026-07-01/resources/project_management/projects/change_status,ProjectManagement > Project,Change statuses a Project,False
+project_management,projects,POST,/api/2026-07-01/resources/project_management/projects/close,ProjectManagement > Project,Closes a Project,False
+project_management,projects,POST,/api/2026-07-01/resources/project_management/projects/soft_delete,ProjectManagement > Project,Soft deletes a Project,False
+project_management,projects,PUT,/api/2026-07-01/resources/project_management/projects/{id},ProjectManagement > Project,Updates a Project,False
+project_management,subprojects,DELETE,/api/2026-07-01/resources/project_management/subprojects/{id},ProjectManagement > Subproject,Deletes a Subproject,False
+project_management,subprojects,GET,/api/2026-07-01/resources/project_management/subprojects,ProjectManagement > Subproject,Reads all Subprojects,False
+project_management,subprojects,GET,/api/2026-07-01/resources/project_management/subprojects/{id},ProjectManagement > Subproject,Reads a single Subproject,False
+project_management,subprojects,POST,/api/2026-07-01/resources/project_management/subprojects,ProjectManagement > Subproject,Creates a Subproject,False
+project_management,subprojects,POST,/api/2026-07-01/resources/project_management/subprojects/rename,ProjectManagement > Subproject,Renames a Subproject,False
+project_management,subprojects,PUT,/api/2026-07-01/resources/project_management/subprojects/{id},ProjectManagement > Subproject,Updates a Subproject,False
+project_management,time_records,DELETE,/api/2026-07-01/resources/project_management/time_records/{id},ProjectManagement > TimeRecord,Deletes a Time record,False
+project_management,time_records,GET,/api/2026-07-01/resources/project_management/time_records,ProjectManagement > TimeRecord,Reads all Time records,False
+project_management,time_records,GET,/api/2026-07-01/resources/project_management/time_records/{id},ProjectManagement > TimeRecord,Reads a single Time record,False
+project_management,time_records,POST,/api/2026-07-01/resources/project_management/time_records,ProjectManagement > TimeRecord,Creates a Time record,False
+project_management,time_records,POST,/api/2026-07-01/resources/project_management/time_records/bulk_delete,ProjectManagement > TimeRecord,Bulk deletes a Time record,False
+project_management,time_records,POST,/api/2026-07-01/resources/project_management/time_records/bulk_process,ProjectManagement > TimeRecord,Bulk processes a Time record,False
+project_management,time_records,POST,/api/2026-07-01/resources/project_management/time_records/update_project_worker,ProjectManagement > TimeRecord,Update project workers a Time record,False
+shift_management,shifts,DELETE,/api/2026-07-01/resources/shift_management/shifts/{id},ShiftManagement > Shift,Deletes a Shift,False
+shift_management,shifts,GET,/api/2026-07-01/resources/shift_management/shifts,ShiftManagement > Shift,Reads all Shifts,False
+shift_management,shifts,GET,/api/2026-07-01/resources/shift_management/shifts/{id},ShiftManagement > Shift,Reads a single Shift,False
+shift_management,shifts,POST,/api/2026-07-01/resources/shift_management/shifts,ShiftManagement > Shift,Creates a Shift,False
+shift_management,shifts,POST,/api/2026-07-01/resources/shift_management/shifts/bulk_create,ShiftManagement > Shift,Bulk creates a Shift,False
+shift_management,shifts,POST,/api/2026-07-01/resources/shift_management/shifts/bulk_delete,ShiftManagement > Shift,Bulk deletes a Shift,False
+tasks,task_files,DELETE,/api/2026-07-01/resources/tasks/task_files/{id},Tasks > TaskFile,Deletes a Task file,False
+tasks,task_files,GET,/api/2026-07-01/resources/tasks/task_files,Tasks > TaskFile,Reads all Task files,False
+tasks,task_files,GET,/api/2026-07-01/resources/tasks/task_files/{id},Tasks > TaskFile,Reads a single Task file,False
+tasks,task_files,POST,/api/2026-07-01/resources/tasks/task_files,Tasks > TaskFile,Creates a Task file,False
+tasks,tasks,DELETE,/api/2026-07-01/resources/tasks/tasks/{id},Tasks > Task,Deletes a Task,False
+tasks,tasks,GET,/api/2026-07-01/resources/tasks/tasks,Tasks > Task,Reads all Tasks,False
+tasks,tasks,GET,/api/2026-07-01/resources/tasks/tasks/{id},Tasks > Task,Reads a single Task,False
+tasks,tasks,POST,/api/2026-07-01/resources/tasks/tasks,Tasks > Task,Creates a Task,False
+tasks,tasks,POST,/api/2026-07-01/resources/tasks/tasks/bulk_create,Tasks > Task,Bulk creates a Task,False
+tasks,tasks,POST,/api/2026-07-01/resources/tasks/tasks/bulk_delete,Tasks > Task,Bulk deletes a Task,False
+tasks,tasks,POST,/api/2026-07-01/resources/tasks/tasks/bulk_update,Tasks > Task,Bulk updates a Task,False
+tasks,tasks,POST,/api/2026-07-01/resources/tasks/tasks/copy,Tasks > Task,Copies a Task,False
+tasks,tasks,POST,/api/2026-07-01/resources/tasks/tasks/create_comment,Tasks > Task,Create comments a Task,False
+tasks,tasks,PUT,/api/2026-07-01/resources/tasks/tasks/{id},Tasks > Task,Updates a Task,False
+teams,memberships,DELETE,/api/2026-07-01/resources/teams/memberships/{id},Teams > Membership,Deletes a Membership,False
+teams,memberships,GET,/api/2026-07-01/resources/teams/memberships,Teams > Membership,Reads all Memberships,False
+teams,memberships,GET,/api/2026-07-01/resources/teams/memberships/{id},Teams > Membership,Reads a single Membership,False
+teams,memberships,POST,/api/2026-07-01/resources/teams/memberships,Teams > Membership,Creates a Membership,False
+teams,memberships,PUT,/api/2026-07-01/resources/teams/memberships/{id},Teams > Membership,Updates a Membership,False
+teams,teams,DELETE,/api/2026-07-01/resources/teams/teams/{id},Teams > Team,Deletes a Team,False
+teams,teams,GET,/api/2026-07-01/resources/teams/teams,Teams > Team,Reads all Teams,False
+teams,teams,GET,/api/2026-07-01/resources/teams/teams/{id},Teams > Team,Reads a single Team,False
+teams,teams,POST,/api/2026-07-01/resources/teams/teams,Teams > Team,Creates a Team,False
+teams,teams,PUT,/api/2026-07-01/resources/teams/teams/{id},Teams > Team,Updates a Team,False
+time_planning,planned_breaks,GET,/api/2026-07-01/resources/time_planning/planned_breaks,TimePlanning > PlannedBreak,Reads all Planned breaks,False
+time_planning,planned_breaks,GET,/api/2026-07-01/resources/time_planning/planned_breaks/{id},TimePlanning > PlannedBreak,Reads a single Planned break,False
+time_planning,planned_breaks,POST,/api/2026-07-01/resources/time_planning/planned_breaks/bulk_create,TimePlanning > PlannedBreak,Bulk creates a Planned break,False
+time_planning,planning_versions,DELETE,/api/2026-07-01/resources/time_planning/planning_versions/{id},TimePlanning > PlanningVersion,Deletes a Planning version,False
+time_planning,planning_versions,GET,/api/2026-07-01/resources/time_planning/planning_versions,TimePlanning > PlanningVersion,Reads all Planning versions,False
+time_planning,planning_versions,POST,/api/2026-07-01/resources/time_planning/planning_versions,TimePlanning > PlanningVersion,Creates a Planning version,False
+time_planning,planning_versions,POST,/api/2026-07-01/resources/time_planning/planning_versions/bulk_create,TimePlanning > PlanningVersion,Bulk creates a Planning version,False
+time_planning,planning_versions,PUT,/api/2026-07-01/resources/time_planning/planning_versions/{id},TimePlanning > PlanningVersion,Updates a Planning version,False
+time_settings,break_configurations,GET,/api/2026-07-01/resources/time_settings/break_configurations,TimeSettings > BreakConfiguration,Reads all Break configurations,False
+time_settings,break_configurations,GET,/api/2026-07-01/resources/time_settings/break_configurations/{id},TimeSettings > BreakConfiguration,Reads a single Break configuration,False
+time_settings,break_configurations,POST,/api/2026-07-01/resources/time_settings/break_configurations,TimeSettings > BreakConfiguration,Creates a Break configuration,False
+time_settings,break_configurations,PUT,/api/2026-07-01/resources/time_settings/break_configurations/{id},TimeSettings > BreakConfiguration,Updates a Break configuration,False
+timeoff,allowance_incidences,DELETE,/api/2026-07-01/resources/timeoff/allowance_incidences/{id},Timeoff > AllowanceIncidence,Deletes an Allowance incidence,False
+timeoff,allowance_incidences,GET,/api/2026-07-01/resources/timeoff/allowance_incidences,Timeoff > AllowanceIncidence,Reads all Allowance incidences,False
+timeoff,allowance_incidences,GET,/api/2026-07-01/resources/timeoff/allowance_incidences/{id},Timeoff > AllowanceIncidence,Reads a single Allowance incidence,False
+timeoff,allowance_incidences,POST,/api/2026-07-01/resources/timeoff/allowance_incidences,Timeoff > AllowanceIncidence,Creates an Allowance incidence,False
+timeoff,allowance_incidences,PUT,/api/2026-07-01/resources/timeoff/allowance_incidences/{id},Timeoff > AllowanceIncidence,Updates an Allowance incidence,False
+timeoff,allowance_stats,GET,/api/2026-07-01/resources/timeoff/allowance_stats,Timeoff > AllowanceStat,Reads all Allowance stats,False
+timeoff,allowance_stats,GET,/api/2026-07-01/resources/timeoff/allowance_stats/{id},Timeoff > AllowanceStat,Reads a single Allowance stat,False
+timeoff,allowances,DELETE,/api/2026-07-01/resources/timeoff/allowances/{id},Timeoff > Allowance,Deletes an Allowance,False
+timeoff,allowances,GET,/api/2026-07-01/resources/timeoff/allowances,Timeoff > Allowance,Reads all Allowances,False
+timeoff,allowances,GET,/api/2026-07-01/resources/timeoff/allowances/{id},Timeoff > Allowance,Reads a single Allowance,False
+timeoff,allowances,POST,/api/2026-07-01/resources/timeoff/allowances,Timeoff > Allowance,Creates an Allowance,False
+timeoff,allowances,POST,/api/2026-07-01/resources/timeoff/allowances/delete_with_alt_allowance,Timeoff > Allowance,Delete with alt allowances an Allowance,False
+timeoff,allowances,PUT,/api/2026-07-01/resources/timeoff/allowances/{id},Timeoff > Allowance,Updates an Allowance,False
+timeoff,blocked_periods,DELETE,/api/2026-07-01/resources/timeoff/blocked_periods/{id},Timeoff > BlockedPeriod,Deletes a Blocked period,False
+timeoff,blocked_periods,GET,/api/2026-07-01/resources/timeoff/blocked_periods,Timeoff > BlockedPeriod,Reads all Blocked periods,False
+timeoff,blocked_periods,GET,/api/2026-07-01/resources/timeoff/blocked_periods/{id},Timeoff > BlockedPeriod,Reads a single Blocked period,False
+timeoff,blocked_periods,POST,/api/2026-07-01/resources/timeoff/blocked_periods,Timeoff > BlockedPeriod,Creates a Blocked period,False
+timeoff,blocked_periods,PUT,/api/2026-07-01/resources/timeoff/blocked_periods/{id},Timeoff > BlockedPeriod,Updates a Blocked period,False
+timeoff,leave_types,GET,/api/2026-07-01/resources/timeoff/leave_types,Timeoff > LeaveType,Reads all Leave types,False
+timeoff,leave_types,GET,/api/2026-07-01/resources/timeoff/leave_types/{id},Timeoff > LeaveType,Reads a single Leave type,False
+timeoff,leave_types,POST,/api/2026-07-01/resources/timeoff/leave_types,Timeoff > LeaveType,Creates a Leave type,False
+timeoff,leave_types,PUT,/api/2026-07-01/resources/timeoff/leave_types/{id},Timeoff > LeaveType,Updates a Leave type,False
+timeoff,leaves,DELETE,/api/2026-07-01/resources/timeoff/leaves/{id},Timeoff > Leave,Deletes a Leave,False
+timeoff,leaves,GET,/api/2026-07-01/resources/timeoff/leaves,Timeoff > Leave,Reads all Leaves,False
+timeoff,leaves,GET,/api/2026-07-01/resources/timeoff/leaves/{id},Timeoff > Leave,Reads a single Leave,False
+timeoff,leaves,POST,/api/2026-07-01/resources/timeoff/leaves,Timeoff > Leave,Creates a Leave,False
+timeoff,leaves,POST,/api/2026-07-01/resources/timeoff/leaves/approve,Timeoff > Leave,Approves a Leave,False
+timeoff,leaves,POST,/api/2026-07-01/resources/timeoff/leaves/approve_all,Timeoff > Leave,Approve alls a Leave,False
+timeoff,leaves,POST,/api/2026-07-01/resources/timeoff/leaves/reject,Timeoff > Leave,Rejects a Leave,False
+timeoff,leaves,PUT,/api/2026-07-01/resources/timeoff/leaves/{id},Timeoff > Leave,Updates a Leave,False
+timeoff,policies,DELETE,/api/2026-07-01/resources/timeoff/policies/{id},Timeoff > Policy,Deletes a Policy,False
+timeoff,policies,GET,/api/2026-07-01/resources/timeoff/policies,Timeoff > Policy,Reads all Policies,False
+timeoff,policies,GET,/api/2026-07-01/resources/timeoff/policies/{id},Timeoff > Policy,Reads a single Policy,False
+timeoff,policies,POST,/api/2026-07-01/resources/timeoff/policies,Timeoff > Policy,Creates a Policy,False
+timeoff,policies,PUT,/api/2026-07-01/resources/timeoff/policies/{id},Timeoff > Policy,Updates a Policy,False
+timeoff,policy_assignments,DELETE,/api/2026-07-01/resources/timeoff/policy_assignments/{id},Timeoff > PolicyAssignment,Deletes a Policy assignment,False
+timeoff,policy_assignments,GET,/api/2026-07-01/resources/timeoff/policy_assignments,Timeoff > PolicyAssignment,Reads all Policy assignments,False
+timeoff,policy_assignments,GET,/api/2026-07-01/resources/timeoff/policy_assignments/{id},Timeoff > PolicyAssignment,Reads a single Policy assignment,False
+timeoff,policy_assignments,POST,/api/2026-07-01/resources/timeoff/policy_assignments,Timeoff > PolicyAssignment,Creates a Policy assignment,False
+timeoff,policy_assignments,PUT,/api/2026-07-01/resources/timeoff/policy_assignments/{id},Timeoff > PolicyAssignment,Updates a Policy assignment,False
+timeoff,policy_timelines,GET,/api/2026-07-01/resources/timeoff/policy_timelines,Timeoff > PolicyTimeline,Reads all Policy timelines,False
+trainings,categories,DELETE,/api/2026-07-01/resources/trainings/categories/{id},Trainings > Category,Deletes a Category,False
+trainings,categories,GET,/api/2026-07-01/resources/trainings/categories,Trainings > Category,Reads all Categories,False
+trainings,categories,GET,/api/2026-07-01/resources/trainings/categories/{id},Trainings > Category,Reads a single Category,False
+trainings,categories,POST,/api/2026-07-01/resources/trainings/categories,Trainings > Category,Creates a Category,False
+trainings,session_access_memberships,GET,/api/2026-07-01/resources/trainings/session_access_memberships,Trainings > SessionAccessMembership,Reads all Session access memberships,False
+trainings,session_access_memberships,GET,/api/2026-07-01/resources/trainings/session_access_memberships/{id},Trainings > SessionAccessMembership,Reads a single Session access membership,False
+trainings,session_access_memberships,POST,/api/2026-07-01/resources/trainings/session_access_memberships/bulk_create,Trainings > SessionAccessMembership,Bulk creates a Session access membership,False
+trainings,session_access_memberships,POST,/api/2026-07-01/resources/trainings/session_access_memberships/bulk_destroy,Trainings > SessionAccessMembership,Bulk destroys a Session access membership,False
+trainings,session_attendances,GET,/api/2026-07-01/resources/trainings/session_attendances,Trainings > SessionAttendance,Reads all Session attendances,False
+trainings,session_attendances,GET,/api/2026-07-01/resources/trainings/session_attendances/{id},Trainings > SessionAttendance,Reads a single Session attendance,False
+trainings,session_attendances,POST,/api/2026-07-01/resources/trainings/session_attendances/bulk_update,Trainings > SessionAttendance,Bulk update session attendances,False
+trainings,sessions,DELETE,/api/2026-07-01/resources/trainings/sessions/{id},Trainings > Session,Deletes a Session,False
+trainings,sessions,GET,/api/2026-07-01/resources/trainings/sessions,Trainings > Session,Reads all Sessions,False
+trainings,sessions,GET,/api/2026-07-01/resources/trainings/sessions/{id},Trainings > Session,Reads a single Session,False
+trainings,sessions,POST,/api/2026-07-01/resources/trainings/sessions,Trainings > Session,Create a new training session,False
+trainings,sessions,PUT,/api/2026-07-01/resources/trainings/sessions/{id},Trainings > Session,Update training session,False
+trainings,training_classes,DELETE,/api/2026-07-01/resources/trainings/training_classes/{id},Trainings > TrainingClass,Deletes a Training class,False
+trainings,training_classes,GET,/api/2026-07-01/resources/trainings/training_classes,Trainings > TrainingClass,Reads all Training classes,False
+trainings,training_classes,GET,/api/2026-07-01/resources/trainings/training_classes/{id},Trainings > TrainingClass,Reads a single Training class,False
+trainings,training_classes,POST,/api/2026-07-01/resources/trainings/training_classes,Trainings > TrainingClass,Creates a Training class,False
+trainings,training_classes,PUT,/api/2026-07-01/resources/trainings/training_classes/{id},Trainings > TrainingClass,Updates a Training class,False
+trainings,training_memberships,GET,/api/2026-07-01/resources/trainings/training_memberships,Trainings > TrainingMembership,Reads all Training memberships,False
+trainings,training_memberships,GET,/api/2026-07-01/resources/trainings/training_memberships/{id},Trainings > TrainingMembership,Reads a single Training membership,False
+trainings,training_memberships,POST,/api/2026-07-01/resources/trainings/training_memberships/bulk_create,Trainings > TrainingMembership,Bulk creates a Training membership,False
+trainings,training_memberships,POST,/api/2026-07-01/resources/trainings/training_memberships/bulk_destroy,Trainings > TrainingMembership,Bulk destroys a Training membership,False
+trainings,training_memberships,PUT,/api/2026-07-01/resources/trainings/training_memberships/{id},Trainings > TrainingMembership,Updates a Training membership,False
+trainings,trainings,DELETE,/api/2026-07-01/resources/trainings/trainings/{id},Trainings > Training,Deletes a Training,False
+trainings,trainings,GET,/api/2026-07-01/resources/trainings/trainings,Trainings > Training,Reads all Trainings,False
+trainings,trainings,GET,/api/2026-07-01/resources/trainings/trainings/{id},Trainings > Training,Reads a single Training,False
+trainings,trainings,POST,/api/2026-07-01/resources/trainings/trainings,Trainings > Training,Creates a Training,False
+trainings,trainings,POST,/api/2026-07-01/resources/trainings/trainings/bulk_delete,Trainings > Training,Bulk deletes a Training,False
+trainings,trainings,POST,/api/2026-07-01/resources/trainings/trainings/bulk_update_catalog,Trainings > Training,Bulk update catalogs a Training,False
+trainings,trainings,POST,/api/2026-07-01/resources/trainings/trainings/update_status,Trainings > Training,Update statuses a Training,False
+trainings,trainings,PUT,/api/2026-07-01/resources/trainings/trainings/{id},Trainings > Training,Updates a Training,False
+work_schedule,day_configurations,GET,/api/2026-07-01/resources/work_schedule/day_configurations,WorkSchedule > DayConfiguration,Reads all Day configurations,False
+work_schedule,day_configurations,GET,/api/2026-07-01/resources/work_schedule/day_configurations/{id},WorkSchedule > DayConfiguration,Reads a single Day configuration,False
+work_schedule,day_configurations,POST,/api/2026-07-01/resources/work_schedule/day_configurations/bulk_cud,WorkSchedule > DayConfiguration,Bulk cuds a Day configuration,False
+work_schedule,overlap_periods,DELETE,/api/2026-07-01/resources/work_schedule/overlap_periods/{id},WorkSchedule > OverlapPeriod,Deletes an Overlap period,False
+work_schedule,overlap_periods,GET,/api/2026-07-01/resources/work_schedule/overlap_periods,WorkSchedule > OverlapPeriod,Reads all Overlap periods,False
+work_schedule,overlap_periods,GET,/api/2026-07-01/resources/work_schedule/overlap_periods/{id},WorkSchedule > OverlapPeriod,Reads a single Overlap period,False
+work_schedule,overlap_periods,POST,/api/2026-07-01/resources/work_schedule/overlap_periods,WorkSchedule > OverlapPeriod,Creates an Overlap period,False
+work_schedule,overlap_periods,PUT,/api/2026-07-01/resources/work_schedule/overlap_periods/{id},WorkSchedule > OverlapPeriod,Updates an Overlap period,False
+work_schedule,schedules,GET,/api/2026-07-01/resources/work_schedule/schedules,WorkSchedule > Schedule,Reads all Schedules,False
+work_schedule,schedules,GET,/api/2026-07-01/resources/work_schedule/schedules/{id},WorkSchedule > Schedule,Reads a single Schedule,False
+work_schedule,schedules,POST,/api/2026-07-01/resources/work_schedule/schedules,WorkSchedule > Schedule,Creates a Schedule,False
+work_schedule,schedules,POST,/api/2026-07-01/resources/work_schedule/schedules/toggle_archive,WorkSchedule > Schedule,Toggle archives a Schedule,False
+work_schedule,schedules,PUT,/api/2026-07-01/resources/work_schedule/schedules/{id},WorkSchedule > Schedule,Updates a Schedule,False

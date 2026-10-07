@@ -9,25 +9,30 @@ Inspired by [lidr-specboot](https://github.com/LIDR-academy/lidr-specboot), adap
 ```
 specs/
 ├── CLAUDE.md / GEMINI.md      # AI entry points → bind agents to the standards
-├── docs/                      # the standards (base hub + 7 specific)
+├── docs/                      # the standards (base hub + 8 specific)
 │   ├── base-standards.md          # core principles, links to everything
 │   ├── python-standards.md        # Python on YepCode/Factorial Code
 │   ├── javascript-standards.md    # JS equivalent (Node 20/22)
 │   ├── platform-guide.md          # YepCode vs Factorial Code, deploy, limits
 │   ├── factorial-api-guide.md     # OAS convention, versioning, auth, quirks
 │   ├── testing-standards.md       # TDD, offline harness, fcode test, verification
-│   ├── documentation-standards.md # client doc set, build brief, app-level platform files (README / MARKETPLACE / CHANGELOG), EN/ES rule
+│   ├── documentation-standards.md # client deliverables (feasibility assessment + design set), build brief, app-level platform files, EN/ES rule
+│   ├── branding.md                # Factorial brand for deliverables + Markdown → branded docx rendering
 │   └── spec-workflow.md           # lifecycle: integration track & script track
-├── templates/                 # build brief, tasks, change spec, doc outlines, app-readme + app-marketplace (canonical platform files)…
+├── templates/                 # feasibility-assessment.md, build brief, tasks, change spec, doc outlines, app-readme + app-marketplace…
+│   ├── docx/                      # the Feasibility Assessment template as a ready-to-use branded .docx (also the renderer's brand source)
+│   └── data/                      # Factorial module ↔ API namespace mapping, OAS 2026-07-01 domain/endpoint lists
+├── scripts/render_fde_docx.py # Markdown → Factorial-branded .docx
 └── .claude/
     ├── agents/                # peer-architect (opus) · peer-dev (sonnet) · peer-qa (sonnet)
-    └── skills/                # 14 skills (see below)
+    └── skills/                # 15 skills (see below)
 ```
 
 ## Skills
 
 | Skill | Purpose |
 |---|---|
+| `feasibility-assessment` | Assess a request to connect Factorial with a third-party system: verdict, gaps, integration options, open questions — rendered as the branded Integration Feasibility Assessment docx |
 | `enrich-req` | Turn a vague request/user story into an implementation-ready one |
 | `explain` | Teach the concept behind a question (mental models, not quick fixes) |
 | `update-docs` | Identify and update docs affected by code changes |
@@ -46,7 +51,7 @@ specs/
 ## How to start a project
 
 1. Open a session in this repo (or a project scaffolded from it) with Claude.
-2. Say what you want to build. Claude will run `enrich-req` if the request is vague, then design with `peer-architect`.
+2. Say what you want to build. For a new third-party integration request Claude starts with `feasibility-assessment`; then `enrich-req` if the request is vague, then design with `peer-architect`.
 3. For a brand-new project, ask for `scaffold-project` — it asks platform (YepCode / Factorial Code), type (integration / script), and language, then creates the repo skeleton.
 4. Follow the lifecycle in `docs/spec-workflow.md`. The root `README.md` (and, on Factorial Code, `MARKETPLACE.md`) is created by `app-readme` / `app-marketplace` at scaffold time and refreshed at every change close; `CHANGELOG.md` starts at the first release. The three files are pushed to the platform with the app.
 
