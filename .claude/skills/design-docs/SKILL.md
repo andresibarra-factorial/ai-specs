@@ -13,7 +13,7 @@ Produce or update the 3-doc client set per `docs/documentation-standards.md` §1
 
 ## Rules
 
-1. **Content before format.** The source of truth is the design session output / build brief. Every section must be backed by a decision or verified fact; unknown = it goes in "Open Decisions", never invented. Field names must exist in the pinned OAS or verified external API notes.
+1. **Content before format.** The source of truth is the design session output / build brief, seeded by the Integration Feasibility Assessment when one exists (its gaps, chosen option and answered questions carry over; nothing it left open may be silently resolved here). Every section must be backed by a decision or verified fact; unknown = it goes in "Open Decisions", never invented. Field names must exist in the pinned OAS or verified external API notes.
 2. **Follow the outline exactly**: header block (title, subtitle, metadata line `Client · Source of record · Consumer · Orchestration`, version line `Version X.Y · Draft for review · CONFIDENTIAL`), auto TOC, section skeleton, tables where the outline says tables.
 3. **Generation**: use the docx skill for .docx and the xlsx skill for .xlsx. Naming: `Factorial_<Client>_<DocType>.<ext>`.
 4. **ES twin** (when the project requires it): full translation with the Spanish naming convention (`..._Arquitectura_de_Integracion.docx`, `..._Reconciliacion_y_Diseno_del_Estado.docx`, `..._Especificacion_Mapeo_de_Campos.xlsx`). English is canonical; produce/refresh the twin from the final English version, never edit it independently.

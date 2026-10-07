@@ -1,18 +1,35 @@
 # Documentation Standards
 
-## 1. The client design doc set (integration track)
+## 1. The client deliverables (integration track)
 
-Every full integration produces three deliverables, named `Factorial_<Client>_<DocType>.<ext>`:
+Every full integration produces, in this order, the feasibility assessment and then the three-document design set:
 
-| Deliverable | Format | Outline template |
-|---|---|---|
-| Integration Architecture | .docx | `templates/architecture-doc-outline.md` |
-| Reconciliation & Resolution/State Design | .docx | `templates/reconciliation-doc-outline.md` |
-| Field Mapping Spec | .xlsx | `templates/field-mapping-outline.md` |
+| Deliverable | Format | Template | Produced by | Naming |
+|---|---|---|---|---|
+| Integration Feasibility Assessment | .docx rendered from .md | `templates/feasibility-assessment.md` (§1.1) | `feasibility-assessment` skill | `YYYYMMDD_FDE-Feasibility-Assessment-<IntegrationName>_<ClientName>_Factorial.docx` |
+| Integration Architecture | .docx | `templates/architecture-doc-outline.md` | `design-docs` skill | `Factorial_<Client>_Integration_Architecture.docx` |
+| Reconciliation & Resolution/State Design | .docx | `templates/reconciliation-doc-outline.md` | `design-docs` skill | `Factorial_<Client>_Reconciliation_State_Design.docx` |
+| Field Mapping Spec | .xlsx | `templates/field-mapping-outline.md` | `design-docs` skill | `Factorial_<Client>_Field_Mapping_Spec.xlsx` |
 
-House style (all docs): header block with two-line title (doc type + integration name), one-line subtitle, metadata line (`Client · Source of record · Consumer · Orchestration`), version line (`Version X.Y · Draft for review · CONFIDENTIAL`), then auto TOC. Each architecture doc opens by naming **the defining architectural fact** of the integration (e.g. Wellhub: real-time webhooks vs async batch → buffer-and-batch). Inventories and configs are tables, flows are narrated step-by-step per lifecycle event.
+Two conventions coexist today. The feasibility assessment follows the **FDE Knowledge Base convention** (`docs/branding.md` §3: dated `YYYYMMDD_FDE-…` file name, Factorial-branded cover with the control table, Radical Red header band) and is rendered from Markdown with `scripts/render_fde_docx.py`. The three design documents still follow the earlier house style (two-line title, metadata line `Client · Source of record · Consumer · Orchestration`, version line `Version X.Y · Draft for review · CONFIDENTIAL`, auto TOC) and the `Factorial_<Client>_<DocType>` names; aligning them to the KB templates (`FDE/Templates`: Solution Design, SOW, Field Mapping, Client Solution presentation) is a tracked follow-up, not something to do ad hoc per project. In both: each document opens by naming **the defining fact** of the integration (e.g. Wellhub: real-time webhooks vs async batch → buffer-and-batch; gsBase: no data API, only bespoke actions), inventories and configurations are tables, flows are narrated step by step per lifecycle event, and every Factorial statement is verified against the pinned OAS.
 
-Generation is handled by the `design-docs` skill.
+### 1.1 The Integration Feasibility Assessment
+
+The first deliverable of any request to connect Factorial with a third-party system, produced **before** a Solution Design or a SOW and before any estimate. It answers whether, how and under which conditions the request can be built, for three readers at once: the internal requester, the client and the FDE lead. Structure (fixed, `templates/feasibility-assessment.md`):
+
+1. **Executive Summary** — the request in one paragraph, the answer, *the defining fact*, verdict-at-a-glance table, blocking items.
+2. **Request Summary & Scope** — what was asked (quoted, sourced), in/out of scope, **Factorial modules hired / to acquire** (stated by the requester; mapped to API namespaces through Appendix B), systems in scope, corrections to the request.
+3. **Findings — external system** — documentation reviewed, interface model (endpoint, communication method, auth, pagination, change detection, events, limits, environments, error model), entities and operations, what the documentation does *not* establish, planning consequences.
+4. **What Factorial Provides** — verified against the pinned OAS: resources, filters, event channel, identity anchors, platform facts relied upon.
+5. **Feasibility by Use Case** — verdict and principal constraint per use case.
+6. **Gaps & Caveats Register** — expectation vs what the systems can do, side (Factorial / external / both / commercial — including a missing Factorial module), severity, course of action, blocking flag.
+7. **Integration Approaches** — ≥ 2 options differing in Factorial modules, communication method (REST, database, SOAP, GraphQL, webhooks, file exchange, vendor-built actions) or phasing; per option: pattern, components, what it accomplishes, gaps left, effort and risk; decision criteria.
+8. **Verdict & Recommendation** — one of *Feasible · Feasible with conditions · Not feasible · Unknown — evidence missing*; recommended approach, prerequisites with owner and date, phasing and the target date, roles.
+9. **Risk Register.**
+10. **Open Questions & Clarifications** — per party (requester, client, vendor, Factorial teams), each linked to what it unblocks; immediate next steps.
+Appendix A — technical evidence (OAS paths, verified webhook types, external transport facts, sources). Appendix B — Factorial modules ↔ API namespaces (`templates/data/factorial-product-api-mapping.csv`, a functional interpretation, not an entitlement list).
+
+Rules: evidence-bound (OAS or cited document, otherwise an open question); fixed verdict and severity vocabularies; no decision taken on the client's behalf (identity key, collision rule, module purchase go to §10); the Markdown is the source — the docx and any ES twin are rendered from it, never edited by hand. The `enrich-req`/`design` steps start only once the verdict is at least *Feasible with conditions* and the blocking questions have owners.
 
 ## 2. The build brief (`docs/CLAUDE.md` in each project)
 
