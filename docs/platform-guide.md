@@ -18,7 +18,7 @@ Facts marked *(verified 2026-08-26)* come from a real `fcode clone` of a dev wor
 | Process entry | `main.py`, define `main()`, **call `main()` at the end** | `main.py`, define `main()`, **NEVER call it yourself** (the platform invokes it — self-invocation is a release Blocker) |
 | Module naming | Underscored valid Python identifiers (hyphens break the importer — verified in production) | **kebab-case slugs are the platform convention** (`shopify-client`); entry file `modules/<slug>/<slug>.py\|js`, never `main.py`/`index.js`. snake_case slugs work but validation flags naming as a Warning |
 | Testing | Local `run` only → our offline harness | `fcode run` (local execution), `fcode http` (local webhook/forms server replicating cloud auth), `fcode-code-validation` (pre-release static gate) + our offline harness |
-| Deploy | Git repo + GitHub Action → YepCode Management API (Wellhub pattern) | `fcode push` to the dev workspace (syncs **registered resources only** — never loose files; `fcode add` registers new ones). Release/promotion below |
+| Deploy | Git repo + GitHub Action → YepCode Management API (Wellhub pattern) | `fcode push` to the dev workspace (syncs **registered resources** plus the three app-level files `README.md`, `MARKETPLACE.md`, `CHANGELOG.md` at `<app>/` — no other loose file; `fcode add` registers new resources). Release/promotion below |
 | Email | Bring your own | `fcode.send_mail` built in (3/execution; From fixed; logged-not-sent locally) |
 | Secrets locally | `credentials/*.json` + `variables.env` | 3-file model below; secrets pull as `********` placeholders |
 | Multi-tenancy | One team per client (our convention) | Per-customer `deploy-{installationId}` workspace, inheriting the app workspace; carries only that customer's variables and `FACTORIAL_TOKEN` |
@@ -78,11 +78,14 @@ Facts marked *(verified 2026-08-26)* come from a real `fcode clone` of a dev wor
   **actual workspace one level down at `<app>/app/`** — that inner directory is what every `fcode` command expects
   as its cwd. `.claude/skills` inside an app is a **symlink to the team-level directory**: writing there edits every
   app's skills, so keep project-specific skills outside it.
+  The harness treats `<app>/` as the project root: the three platform files `README.md`, `MARKETPLACE.md` and
+  `CHANGELOG.md` (canonical templates, `documentation-standards.md` §3), plus `docs/CLAUDE.md`, `BUILD_DECISIONS.md`,
+  `specs/changes/` and `test/` sit there, beside `app/` — never inside the workspace.
 - **Never read a CLI-managed local file as remote truth.** `variables.inherited.env`, `requirements.inherited.txt`,
   `.fcode/remote.*.json` and a freshly-cloned `parentTeams: []` all reflect the last successful *sync*, not the
   cloud. If a pull failed or a parent was detached, they will confidently describe a state that no longer exists.
   Diagnose from the cloud — an API call, an execution, `--showInherited` — before concluding anything.
-- **git vs fcode are independent**: `fcode push` never uploads loose files (docs, templates, `.DS_Store`) — only registered resources. Conversely the CLI-managed `.gitignore` block covers inherited resources and local state but **not** `.DS_Store`/`__pycache__` — add those yourself, as `__pycache__/` (any depth; `*/__pycache__` matches one level only).
+- **git vs fcode are independent**: `fcode push` uploads registered resources and — *per the platform team, 2026-10* — exactly three app-level files from `<app>/`: `README.md`, `MARKETPLACE.md`, `CHANGELOG.md` (`documentation-standards.md` §3). Every other loose file (docs, templates, `.DS_Store`) stays git-only. Conversely the CLI-managed `.gitignore` block covers inherited resources and local state but **not** `.DS_Store`/`__pycache__` — add those yourself, as `__pycache__/` (any depth; `*/__pycache__` matches one level only).
 
 ## 4. Choosing a platform
 

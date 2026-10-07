@@ -12,10 +12,11 @@ Read `docs/base-standards.md` before doing anything. It links every other standa
 2. **Baby steps.** One small task at a time. Never move forward more than one step without confirmation or a passing test.
 3. **TDD.** Start with a failing test. No task is checked off until its tests pass and the verification steps in `docs/testing-standards.md` are done. Never delegate testing to the user.
 4. **Docs first.** Any change requested after implementation starts must update the spec/design artifacts first, then the code.
+5. **One shape per platform file.** Every project's root `README.md` follows `templates/app-readme.md` exactly and every Factorial Code app's `MARKETPLACE.md` follows `templates/app-marketplace.md` (`docs/documentation-standards.md` §3) — produced and refreshed with the `app-readme` / `app-marketplace` skills, never free-form; `CHANGELOG.md` follows §7. The three are pushed to the platform with the app.
 
 ## Skills
 
-Skills live in `.claude/skills/`. When a request matches a skill's description, load and follow its SKILL.md automatically. Roster: `enrich-req`, `explain`, `update-docs`, `code-audit`, `adversarial-review`, `factorial-oas`, `scaffold-project`, `design-docs`, `testing`, `migrate-platform`, `gemini-brief`, `writing-skills`.
+Skills live in `.claude/skills/`. When a request matches a skill's description, load and follow its SKILL.md automatically. Roster: `enrich-req`, `explain`, `update-docs`, `code-audit`, `adversarial-review`, `factorial-oas`, `scaffold-project`, `design-docs`, `app-readme`, `app-marketplace`, `testing`, `migrate-platform`, `gemini-brief`, `writing-skills`.
 
 ## Agents
 

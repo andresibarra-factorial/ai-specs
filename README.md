@@ -16,12 +16,12 @@ specs/
 │   ├── platform-guide.md          # YepCode vs Factorial Code, deploy, limits
 │   ├── factorial-api-guide.md     # OAS convention, versioning, auth, quirks
 │   ├── testing-standards.md       # TDD, offline harness, fcode test, verification
-│   ├── documentation-standards.md # client doc set, build brief, EN/ES rule
+│   ├── documentation-standards.md # client doc set, build brief, app-level platform files (README / MARKETPLACE / CHANGELOG), EN/ES rule
 │   └── spec-workflow.md           # lifecycle: integration track & script track
-├── templates/                 # build brief, tasks, change spec, doc outlines…
+├── templates/                 # build brief, tasks, change spec, doc outlines, app-readme + app-marketplace (canonical platform files)…
 └── .claude/
     ├── agents/                # peer-architect (opus) · peer-dev (sonnet) · peer-qa (sonnet)
-    └── skills/                # 12 skills (see below)
+    └── skills/                # 14 skills (see below)
 ```
 
 ## Skills
@@ -36,6 +36,8 @@ specs/
 | `factorial-oas` | Find and query the latest `factorial-oas-YYYY-MM-DD.json`; flag version drift |
 | `scaffold-project` | Bootstrap a new integration or script project from templates |
 | `design-docs` | Generate the client doc set (Architecture, Reconciliation, Field Mapping) |
+| `app-readme` | Create or refresh the root `README.md` on the canonical app-level template (Integration Catalogue source; pushed with the app) |
+| `app-marketplace` | Create or refresh `MARKETPLACE.md`, the Factorial Marketplace listing (Publication fields, within their limits; pushed with the app) |
 | `testing` | Build/extend the offline test harness; write and run tests; report |
 | `migrate-platform` | Guided YepCode → Factorial Code migration |
 | `gemini-brief` | Package a self-contained task brief for Gemini |
@@ -46,7 +48,7 @@ specs/
 1. Open a session in this repo (or a project scaffolded from it) with Claude.
 2. Say what you want to build. Claude will run `enrich-req` if the request is vague, then design with `peer-architect`.
 3. For a brand-new project, ask for `scaffold-project` — it asks platform (YepCode / Factorial Code), type (integration / script), and language, then creates the repo skeleton.
-4. Follow the lifecycle in `docs/spec-workflow.md`.
+4. Follow the lifecycle in `docs/spec-workflow.md`. The root `README.md` (and, on Factorial Code, `MARKETPLACE.md`) is created by `app-readme` / `app-marketplace` at scaffold time and refreshed at every change close; `CHANGELOG.md` starts at the first release. The three files are pushed to the platform with the app.
 
 ## Model overrides
 

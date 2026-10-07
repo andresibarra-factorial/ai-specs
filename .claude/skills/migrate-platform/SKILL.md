@@ -25,7 +25,7 @@ Inventory the project and score each item:
 | Webhook auth | in-code challenge checks → platform auth: `metadata.json` `webhook.authMode: TEAM` + `team.json` `webhookAuth {x-factorial-wh-challenge, FACTORIAL_CHALLENGE_TOKEN}` (not inherited — set per workspace). Callers pin `?version_tag=stable` |
 | Forms | per-process `metadata.json` `form.enabled` + `authMode` (`FACTORIAL` restricts to the installing company's users; a public form handling credentials is a validation **Blocker**) + marketplace `appRole` |
 | Deps | pins → `dependencies/requirements.txt`; `# @add-package` only where import name ≠ package name; never redeclare parent-provided packages |
-| Deploy | `scripts/deploy.py` + GitHub Action retire; `fcode push` syncs registered resources only (git and fcode are independent) |
+| Deploy | `scripts/deploy.py` + GitHub Action retire; `fcode push` syncs registered resources plus the app-level `README.md` / `MARKETPLACE.md` / `CHANGELOG.md` at `<app>/` (git and fcode are otherwise independent). Add `MARKETPLACE.md` (`app-marketplace` skill) — YepCode projects never had one |
 | Email/errors | wire `team.json` `errorHandlerConfig` → inherited `workspace-error-handler` (+ `ERROR_NOTIFY_EMAIL`); `fcode.send_mail` (3/execution) for other mail |
 | Tests | harness fake global renamed; static checks exclude inherited (kebab-case, read-only) resources; keep the offline suite green throughout |
 | Secrets | `credentials/*.json` disappear; real values only in `variables.local.env`; `variables.meta.json` `isSensitive` is immutable once pushed |

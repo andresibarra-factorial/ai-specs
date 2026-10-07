@@ -5,7 +5,10 @@ Python is our primary language. Runtime: **3.12 on YepCode**, **3.13 on Factoria
 ## 1. Project structure
 
 ```
-project/
+project/                   # Factorial Code team repo: this is <app>/, the fcode workspace is <app>/app/ (platform-guide §3)
+├── README.md              # app-level README — canonical template templates/app-readme.md (documentation-standards §3.1)
+├── MARKETPLACE.md         # Factorial Code only — marketplace listing, templates/app-marketplace.md (documentation-standards §3.2)
+├── CHANGELOG.md           # release history (documentation-standards §7) — the three files above are pushed with the app
 ├── docs/                  # build brief (CLAUDE.md), design docs
 ├── modules/               # reusable logic — one folder per module
 │   ├── <module_name>/<module_name>.py    (+ optional README.md, not deployed)
